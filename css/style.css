@@ -13,15 +13,13 @@ body {
     align-items: center;
     background-color: #1629A1;
     width: 100%;
-    position: fixed;
 }
 
 .container {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    height: 100%;
     width: 100%;
 }
 
@@ -85,6 +83,12 @@ body {
     padding-left: 13px;
 }
 
+.juegos-general{
+    height: 736px;
+    width: 100%;
+    background-color:#1629A1 ;
+}
+
 
 
 
@@ -108,6 +112,8 @@ body {
             height: 20px;
           
         }
+      
+        
 
         input {
             border: none;
@@ -115,10 +121,6 @@ body {
             width: 220px;
         }
 
-        .container{
-            
-            justify-content: space-between;
-        }
     
 
 }
