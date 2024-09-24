@@ -62,16 +62,27 @@ body {
     align-items: center;
     display: flex;
     justify-content: center;
+    width: 100%;
     height: 491px;
     background-image: url(/img/fondo-juegos-recomendados.png);
 }
 
 .juegos-recomendados{
-  
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 320px;
     background-color: #4554B1;
 
+}
+
+.titulo{
+    height: 50px;
+    width: 525px;
+    font-weight: 400;
+    color: #FFF;
+    padding-top: 16px;
+    padding-left: 13px;
 }
 
 
