@@ -13,14 +13,14 @@ body {
     
     background-color: #1629A1;
     width: 100%;
+    position: fixed;
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
+
     width: 100%;
 }
 
@@ -91,46 +91,71 @@ body {
     padding-left: 13px;
 }
 
-.juegos-general{
-    height: 736px;
-    width: 100%;
-    background-color:#1629A1 ;
-}
-
 
 
 
 @media (min-width: 768px) {
    
    
-        .search-container{
-            display: flex;
-            align-items: center;
-            padding: 0px 20px;
-            height: 33px;
-            width: 275px;
-            background-color: #fff;
-            border-radius: 10px;
-            position: fixed;
-            top: 18px;
-            right: 600px;
-          }
-         
-        #lupa{
-            height: 20px;
-          
-        }
+    .container {
+        justify-content: space-between; 
+        
+    }
 
-        input {
-            border: none;
-            background-color: #fff;
-            width: 220px;
-        }
+    .menu-toggle { 
+        padding-right: 0; 
+        margin-left: 20px;
+    }
 
-        .container{
-            
-            justify-content: space-between;
-        }
+    .logo {
+        margin-left: 20px; /* Ajustamos el margen izquierdo del logo para que coincida con el de los iconos */
+        
+    }
+
+    .icons {
+        margin-left: auto; 
+        margin-right: 20px; /* Agregamos margen derecho a los iconos */
+    }
+
+    .search-container {
+        /* ... otros estilos ... */
+        display: block;
+        position: absolute; 
+        left: 50%;
+        transform: translateX(-50%); 
+        width: 275px; 
+        height: 33px;  
+        border-radius: 9px; 
+    }
+    
+    .search-container input {
+        /* ... otros estilos ... */
+        width: 100%; /* El input ocupa todo el ancho del contenedor */
+        height: 100%; 
+        border-radius: 9px;
+        padding-right: 30px; /* Espacio para la lupa a la derecha */
+        position: relative; /* Para posicionar la lupa dentro */
+    }
+    
+    .btn-buscar {
+        position: absolute;
+        right: 5px; /* Ajusta según el padding interno de .search-container */
+        top: 50%;
+        transform: translateY(-50%);
+        background: none; /* Eliminamos el fondo del botón */
+        border: none;    /* Eliminamos el borde del botón */
+        cursor: pointer; /* Indicamos que es un elemento interactivo */
+    }
+    
+    
     
 
+    nav { 
+        /* Eliminamos flex-grow para que no ocupe espacio extra */
+        flex-grow: 0; 
+        display: flex;
+        justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
+    }
+
+    /* ... el resto del media query se mantiene igual ... */
 }
