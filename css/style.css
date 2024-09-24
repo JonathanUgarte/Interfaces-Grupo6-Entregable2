@@ -10,7 +10,6 @@ body {
 
 .header {
     display: flex;
-    
     background-color: #1629A1;
     width: 100%;
     position: fixed;
@@ -136,6 +135,10 @@ body {
         padding-right: 30px; /* Espacio para la lupa a la derecha */
         position: relative; /* Para posicionar la lupa dentro */
     }
+
+    #buscar {
+        border: none;
+    }
     
     .btn-buscar {
         position: absolute;
@@ -159,3 +162,144 @@ body {
 
     /* ... el resto del media query se mantiene igual ... */
 }
+
+
+.juego-en-ejecucion {
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #121E67;
+}
+
+.juego{
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #000;
+    opacity: 80%;
+     width: 912px;
+     height: 532px;
+     border-radius: 20px;
+    
+}
+
+.juego  h1 {
+    padding-top: 23px;
+    color: #FFF;
+    font-weight: 400;
+}
+
+.personajes {
+    
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.personajes h2 {
+    padding-bottom: 50px;
+    padding-right: 200px;
+    padding-left: 200px;
+    color: #FFF;
+    font-weight: 400;
+}
+.personajes img {
+    padding: 10px;
+    height: 80px;
+    width: 81px;
+}
+
+.btn-jugar-juego {
+    border: none;
+    font-size: large;
+    font-family: "Outfit", sans-serif;
+    color: #FFF;
+    background-color:#4554B1;
+    height: 50px;
+    width: 304px;
+    border-radius: 10px;
+    position: relative;
+    top: 110px;
+}
+
+.intrucciones-container{
+    padding: 30px;
+    height: 1481px;
+    width: 912px;
+    border-radius: 20px;
+    background-color: #1629A1;
+}
+
+.intrucciones-container h1 {
+    font-size: 40px;
+    color: #FFF;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+.titulo-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.breadcams {
+    color: #FFF;
+}
+
+.compartir {
+  
+    width: 170px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #237C75;
+    color: #FFF;
+    border-radius: 15px;
+    border: none;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.info p {
+    
+    color: #FFF;
+}
+
+.intrucciones-container h2 {
+    color: #FFF;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.controles-container {
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.controles {
+    color: #FFF;
+    width: 50%;
+}
+
+.gameplay-container {
+    display: flex;
+    justify-content: center;
+  
+}
+
+
+
