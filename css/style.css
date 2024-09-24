@@ -10,7 +10,7 @@ body {
 
 .header {
     display: flex;
-    align-items: center;
+    
     background-color: #1629A1;
     width: 100%;
 }
@@ -18,13 +18,14 @@ body {
 .container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
     width: 100%;
 }
 
 .logo {
-    padding-right: 50px;
+    
     padding-top: 10px;
     
 }
@@ -53,6 +54,13 @@ body {
 
 .search-container {
     display: none;
+    position:relative;
+}
+.btn-buscar {
+    position: absolute; 
+    right: 10px; /* Ajusta según el padding interno de .search-container */
+    top: 50%;
+    transform: translateY(-50%); 
 }
 
 .juego-recomendados-container{
@@ -112,8 +120,6 @@ body {
             height: 20px;
           
         }
-      
-        
 
         input {
             border: none;
@@ -121,6 +127,10 @@ body {
             width: 220px;
         }
 
+        .container{
+            
+            justify-content: space-between;
+        }
     
 
 }
