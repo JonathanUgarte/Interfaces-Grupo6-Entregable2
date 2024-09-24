@@ -19,15 +19,16 @@ body {
 .container {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
 }
 
 .logo {
-
+    padding-right: 50px;
     padding-top: 10px;
-   
+    
 }
 
 
@@ -41,7 +42,7 @@ body {
 }
 
 .menu-toggle {
-    padding-left: 20px;
+    padding-right: 70px;
     cursor: pointer;
     position: relative;
 }
@@ -55,6 +56,8 @@ body {
 .search-container {
     display: none;
 }
+
+
 
 @media (min-width: 768px) {
    
@@ -85,9 +88,8 @@ body {
         }
 
         .container{
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            
+            justify-content: space-between;
         }
     
 
