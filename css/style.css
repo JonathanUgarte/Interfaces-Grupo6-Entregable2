@@ -136,6 +136,11 @@ body {
         position: relative; /* Para posicionar la lupa dentro */
     }
 
+    .search-container input:focus {
+        outline: none;
+        border: none; /* Opcional, si también quieres eliminar el borde */
+    }
+
     #buscar {
         border: none;
     }
@@ -163,6 +168,7 @@ body {
     /* ... el resto del media query se mantiene igual ... */
 }
 
+/* CSS JUEGO EN GAME.HTML */
 
 .juego-en-ejecucion {
     padding-top: 130px;
@@ -171,6 +177,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #121E67;
+    padding-bottom: 200px;
 }
 
 .juego{
@@ -228,7 +235,7 @@ body {
 
 .intrucciones-container{
     padding: 30px;
-    height: 1481px;
+    height: 1420px;
     width: 912px;
     border-radius: 20px;
     background-color: #1629A1;
@@ -276,6 +283,8 @@ body {
 }
 
 .intrucciones-container h2 {
+    display: flex;
+    align-items: center;
     color: #FFF;
     font-weight: 300;
     padding-top: 30px;
@@ -301,5 +310,177 @@ body {
   
 }
 
+.comentarios-container {
+    border-radius: 20px;
+    height: 250px;
+    width: 810px;
+    background-color: #5D5D5D;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.comentarios-profile {
+    gap: 5px;
+    border: #ffffff , solid, 2px;
+    border-left: none ;
+    border-right: none;
+    border-top: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.comentarios-profile p {
+    color: #FFF;
+    font-size: large;
+}
+
+.comentario {
+    height: 90px;
+}
+
+.comentario input {
+    width: 500px;
+    padding-top: 10px;
+    background-color:#5D5D5D ;
+    font-size: 15px;
+    border: none;
+}
+
+.comentario ::placeholder {
+    color: white;
+    font-family: "Outfit", sans-serif;
+  
+}
+
+.comentario input:focus {
+    outline: none;
+    border: none; /* Opcional, si también quieres eliminar el borde */
+  }
+
+.btn-enviar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #237C75;
+    border-radius: 15px;
+    text-align: center;
+    width: 170px;
+    height: 30px;
+    color: #FFF;
+    gap: 5px;
+    border: none;
+}
+
+.btn-enviar-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+
+/* Contenedor de estrellas */
+.puntuacion-container {
+    direction: rtl;
+    display: inline-flex;
+    position: relative;
+    font-size: 40px; /* Tamaño de las estrellas */
+  }
+  
+  .puntuacion-container input {
+    display: none; /* Oculta los botones de radio */
+  }
+  
+  .puntuacion-container label {
+    cursor: pointer;
+    color: #D9D9D9; /* Color de estrellas no seleccionadas */
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .puntuacion-container input:checked ~ label {
+    color: #FFD700; /* Color de estrellas seleccionadas */
+  }
+  
+  .puntuacion-container label:hover,
+  .puntuacion-container label:hover ~ label {
+    color: #FFD700; /* Color de estrellas al pasar el cursor */
+  }
+
+
+  /*CSS FOOTER */
+
+.footer-container {
+    gap: 90px;
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 225px;
+    background-color: #4554B1;
+}
+
+.acerca-epic-play {
+    padding-top: 20px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    color : #FFF
+}
+
+.acerca-epic-play p{
+    font-size: small;
+}
+
+.acerca-epic-play h2 {
+    font-size: 40px;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+.footer-info {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-contactos , .info-extra {
+    padding-top: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    border: #121E67, solid,4px;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 1px;
+
+  
+
+}
+
+.footer-contactos a  , .info-extra a{
+    padding-left: 20px;
+    padding-right: 60px;
+    color: #FFF;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.info-extra a {
+    text-decoration: none;
+}
+
+  
+  
 
 
