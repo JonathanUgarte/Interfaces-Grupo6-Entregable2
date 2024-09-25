@@ -13,6 +13,9 @@ body {
     background-color: #1629A1;
     width: 100%;
     position: fixed;
+    top: 0;          /* Asegura que se quede en la parte superior de la página */
+    left: 0;
+    z-index: 1000;   /* Asegura que el header esté por encima de otros elementos */
 }
 
 .container {
@@ -169,14 +172,28 @@ body {
 }
 
 /* CSS JUEGO EN GAME.HTML */
+.juego-en-ejecucion-container{
+    display: flex;
+}
+.otros-juegos {
+    padding-top: 110px;
+    width: 20%;;
+    background-color:#121E67 ;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
 
+}
 .juego-en-ejecucion {
+    width: 80%;
     padding-top: 130px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #121E67;
+    padding-left: 220px;
     padding-bottom: 200px;
 }
 
@@ -407,6 +424,54 @@ body {
   .puntuacion-container label:hover ~ label {
     color: #FFD700; /* Color de estrellas al pasar el cursor */
   }
+
+  .game-card-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Estilo de cada tarjeta */
+.game-card {
+    position: relative;
+    width: 160px;
+    height: 90px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilos para las etiquetas (badges) */
+.badge {
+    display: flex;
+    align-items: center;
+    width: 71px;
+    height: 19px;
+    position: absolute;
+    top: 10px;
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.premium {
+    background-color: #FFCC00; /* Color dorado */
+}
+
+.free {
+    background-color: #00CC44; /* Color verde */
+}
 
 
   /*CSS FOOTER */
