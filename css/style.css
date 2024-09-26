@@ -18,6 +18,46 @@ body {
     z-index: 1000;   /* Asegura que el header esté por encima de otros elementos */
 }
 
+.nav {
+    display: none;
+    padding-top: 60px;
+    background-color: #4554B1;
+    width: 260px;
+    height: 780px;
+    position: fixed; /* Fija el menú en su posición */
+    left: -260px; /* Posición inicial fuera de la vista */
+    top: 0;
+    transition: left 0.10s ease; /* Añade una animación para el deslizamiento */
+    overflow-y: auto; /* Permite el scroll solo dentro del menú */
+}
+
+.nav.visible {
+    left: 0;
+    display: flex;
+}
+
+.nav-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+}
+.nav-list a {
+    gap: 5px;
+    font-size: x-large;
+    padding-left: 20px;
+    padding-right: 60px;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .container {
     display: flex;
     align-items: center;
