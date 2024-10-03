@@ -1,8 +1,8 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0; /* No olvides reiniciar el margen */
+    padding: 0; /* No olvides reiniciar el padding */
     box-sizing: border-box;
-}
+  }
 
 body {
     font-family: "Outfit", sans-serif;
@@ -395,6 +395,7 @@ body {
     .seccion-juegos-nuevos , .seccion-juegos-tendencia , .seccion-juegos-shooters , .seccion-juegos-lucha{
         width: 100%;
         height: 25%;
+        overflow-x: hidden;
     }
 
     .carrusel-juegos {
@@ -403,7 +404,8 @@ body {
         gap: 20px;
         display: flex;
         align-items: center;
-    }
+        overflow-x: auto; 
+      }
 
 }
 
@@ -805,8 +807,73 @@ body {
 .info-extra a {
     text-decoration: none;
 }
-
+.carrusel-juegos {
+    position: relative;
+    width: 100%; /* Ajusta según tu diseño */
+    overflow: hidden; 
+  }
   
+  .contenedor-carrusel {
+    display: flex;
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    gap: 10px; /* Espacio entre las tarjetas */
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+    position: relative;
+  }
+  
+  .game-card {
+    min-width: 200px; /* Ajusta el ancho de cada tarjeta */
+    margin-right: 10px; /* Espacio entre tarjetas */
+    flex-shrink: 0;
+  }
+  
+  .flecha-izquierda, .flecha-derecha {
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajuste para mantener centrado */
+    background-color: transparent; /* Sin fondo */
+    border: none; /* Sin borde */
+    padding: 0;
+    cursor: pointer;
+    z-index: 2; /* Asegura que esté por encima del contenido */
+}
+
+
+.flecha-izquierda {
+    left: 0;
+    background-color: transparent; /* Fondo transparente */
+}
+
+.flecha-derecha {
+    right: 0;
+    background-color: transparent; /* Fondo transparente */
+      
+    }
+    .flecha-izquierda img, .flecha-derecha img {
+        width: 50px; /* Ajusta según el tamaño de tu imagen */
+        height: 90px; 
+    }
+    
+    .flecha-izquierda, .flecha-derecha {
+        width: 50px; /* Igual al tamaño de la imagen */
+        height: 90px;
+    }
+    
+
+.flecha-izquierda:disabled, .flecha-derecha:disabled {
+    opacity: 0.5; /* Opcional: estilo para las flechas deshabilitadas */
+    cursor: not-allowed;
+}
+  .contenedor-carrusel::-webkit-scrollbar {
+    display: none; /* Oculta las barras de scroll */
+}
+
+
+.flecha-izquierda img:hover, .flecha-derecha img:hover {
+    filter: brightness(5.1);  /* Resalta un poco la imagen */
+    transition: filter 0.5s ease; /* Suaviza la transición del brillo */
+}
   
 
 
