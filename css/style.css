@@ -7,7 +7,7 @@
 body {
     font-family: "Outfit", sans-serif;
 }
-
+/* HEADER MOBILE */
 .header {
     display: flex;
     background-color: #1629A1;
@@ -105,6 +105,8 @@ body {
     top: 50%;
     transform: translateY(-50%); 
 }
+
+/* JUEGOS RECOMENDADOS MOBILE */
 
 .juego-recomendados-container{
     padding-top: 60px;
@@ -395,7 +397,6 @@ body {
     .seccion-juegos-nuevos , .seccion-juegos-tendencia , .seccion-juegos-shooters , .seccion-juegos-lucha{
         width: 100%;
         height: 25%;
-        overflow-x: hidden;
     }
 
     .carrusel-juegos {
@@ -404,8 +405,7 @@ body {
         gap: 20px;
         display: flex;
         align-items: center;
-        overflow-x: auto; 
-      }
+    }
 
 }
 
@@ -737,12 +737,12 @@ body {
 
 .footer-container {
     gap: 90px;
-    padding-left: 60px;
-    padding-right: 60px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 225px;
+    height: auto;
     background-color: #4554B1;
 }
 
@@ -772,7 +772,9 @@ body {
     justify-content: center;
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 30px;
 }
 
 .footer-contactos , .info-extra  , .footer-contactos-2{
@@ -785,12 +787,8 @@ body {
     text-align: center;
     border: #121E67, solid,4px;
     border-top: none;
-    border-right: none;
     border-bottom: none;
     border-radius: 1px;
-
-  
-
 }
 
 .footer-contactos a  , .info-extra a , .footer-contactos-2 a{
@@ -807,73 +805,8 @@ body {
 .info-extra a {
     text-decoration: none;
 }
-.carrusel-juegos {
-    position: relative;
-    width: 100%; /* Ajusta según tu diseño */
-    overflow: hidden; 
-  }
+
   
-  .contenedor-carrusel {
-    display: flex;
-    overflow-x: auto; /* Permitir desplazamiento horizontal */
-    scroll-behavior: smooth; /* Desplazamiento suave */
-    gap: 10px; /* Espacio entre las tarjetas */
-    transition: transform 0.3s ease-in-out; /* Transición suave */
-    position: relative;
-  }
-  
-  .game-card {
-    min-width: 200px; /* Ajusta el ancho de cada tarjeta */
-    margin-right: 10px; /* Espacio entre tarjetas */
-    flex-shrink: 0;
-  }
-  
-  .flecha-izquierda, .flecha-derecha {
-    position: absolute;
-    top: 50%; /* Centra verticalmente */
-    transform: translateY(-50%); /* Ajuste para mantener centrado */
-    background-color: transparent; /* Sin fondo */
-    border: none; /* Sin borde */
-    padding: 0;
-    cursor: pointer;
-    z-index: 2; /* Asegura que esté por encima del contenido */
-}
-
-
-.flecha-izquierda {
-    left: 0;
-    background-color: transparent; /* Fondo transparente */
-}
-
-.flecha-derecha {
-    right: 0;
-    background-color: transparent; /* Fondo transparente */
-      
-    }
-    .flecha-izquierda img, .flecha-derecha img {
-        width: 50px; /* Ajusta según el tamaño de tu imagen */
-        height: 90px; 
-    }
-    
-    .flecha-izquierda, .flecha-derecha {
-        width: 50px; /* Igual al tamaño de la imagen */
-        height: 90px;
-    }
-    
-
-.flecha-izquierda:disabled, .flecha-derecha:disabled {
-    opacity: 0.5; /* Opcional: estilo para las flechas deshabilitadas */
-    cursor: not-allowed;
-}
-  .contenedor-carrusel::-webkit-scrollbar {
-    display: none; /* Oculta las barras de scroll */
-}
-
-
-.flecha-izquierda img:hover, .flecha-derecha img:hover {
-    filter: brightness(5.1);  /* Resalta un poco la imagen */
-    transition: filter 0.5s ease; /* Suaviza la transición del brillo */
-}
   
 
 
