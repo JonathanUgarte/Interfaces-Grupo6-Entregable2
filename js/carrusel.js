@@ -1,17 +1,10 @@
-function moverCarrusel(direccion) {
-    const contenedor = document.querySelector('.contenedor-carrusel');
-    const cardWidth = document.querySelector('.game-card').offsetWidth; 
-    const scrollAmount = cardWidth + 10; // Ajusta este valor si es necesario
+function moverCarrusel(direccion, carruselId) {
+    const carrusel = document.getElementById(carruselId).querySelector('.contenedor-carrusel');
+    const desplazamiento = 300; // La cantidad de desplazamiento en píxeles
 
     if (direccion === 'izquierda') {
-        contenedor.scrollBy({ 
-            left: -scrollAmount, 
-            behavior: 'smooth' 
-        });
+        carrusel.scrollLeft -= desplazamiento;
     } else if (direccion === 'derecha') {
-        contenedor.scrollBy({ 
-            left: scrollAmount, 
-            behavior: 'smooth' 
-        });
+        carrusel.scrollLeft += desplazamiento;
     }
 }
