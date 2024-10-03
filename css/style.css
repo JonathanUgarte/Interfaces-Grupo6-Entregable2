@@ -806,6 +806,157 @@ body {
     text-decoration: none;
 }
 
+
+@media (min-width: 768px) {
+   
+    /*HEADER DESKTOP */
+     .container {
+         justify-content: space-between; 
+         
+     }
+ 
+     .menu-toggle { 
+         padding-right: 0; 
+         margin-left: 20px;
+     }
+ 
+     .logo {
+         margin-left: 20px; /* Ajustamos el margen izquierdo del logo para que coincida con el de los iconos */
+         
+     }
+ 
+     .icons {
+         margin-left: auto; 
+         margin-right: 20px; /* Agregamos margen derecho a los iconos */
+     }
+ 
+     .search-container {
+         /* ... otros estilos ... */
+         display: block;
+         position: absolute; 
+         left: 50%;
+         transform: translateX(-50%); 
+         width: 275px; 
+         height: 33px;  
+         border-radius: 9px; 
+     }
+     
+     .search-container input {
+         /* ... otros estilos ... */
+         width: 100%; /* El input ocupa todo el ancho del contenedor */
+         height: 100%; 
+         border-radius: 9px;
+         padding-right: 30px; /* Espacio para la lupa a la derecha */
+         position: relative; /* Para posicionar la lupa dentro */
+     }
+ 
+     .search-container input:focus {
+         outline: none;
+         border: none; /* Opcional, si también quieres eliminar el borde */
+     }
+ 
+     #buscar {
+         border: none;
+     }
+     
+     .btn-buscar {
+         position: absolute;
+         right: 5px; /* Ajusta según el padding interno de .search-container */
+         top: 50%;
+         transform: translateY(-50%);
+         background: none; /* Eliminamos el fondo del botón */
+         border: none;    /* Eliminamos el borde del botón */
+         cursor: pointer; /* Indicamos que es un elemento interactivo */
+     }
+     
+     
+     
+ 
+     nav { 
+         /* Eliminamos flex-grow para que no ocupe espacio extra */
+         flex-grow: 0; 
+         display: flex;
+         justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
+     }
+ 
+     /* ... el resto del media query se mantiene igual ... */
+ 
+     /*JUEGOS RECOMENDADOS DESKTOP */
+ 
+     .carrusel-container {
+         display: none;
+     } 
+ 
+     .juegos-recomendados-desktop {
+         display: flex;
+         padding: 15px;
+         padding-top: 35px;
+         width: 100%;
+         height: 100%;
+     }
+ 
+     .juegos-recomendados {
+         padding-left: 10px;
+     }
+ 
+     .titulo {
+         font-size: 30px;
+     }
+     .juegos-otros {
+         display: flex;
+         flex-direction: column;
+     }
+ 
+     .juegos-otros-top , .juegos-otros-bottom {
+         display: flex;
+         flex-direction: row;
+         padding-left: 40px;
+         gap: 30px;
+     }
+ 
+     .juegos-por-categoria {
+         padding: 10px;
+         width: 100%;
+         height: 736px;
+         background-color: #121E67;
+     }
+    .subtitulo {
+     font-weight: 400;
+     color: #FFF;
+     padding-top: 16px;
+     padding-left: 13px;
+    }
+ 
+     .seccion-juegos-nuevos , .seccion-juegos-tendencia , .seccion-juegos-shooters , .seccion-juegos-lucha{
+         width: 100%;
+         height: 25%;
+     }
+ 
+     .carrusel-juegos {
+         padding-top: 20px;
+         padding-left: 10px;
+         gap: 20px;
+         display: flex;
+         align-items: center;
+     }
+     /* JUEGOS POR CATEGORIA DESKTOP */
+     .footer-container {
+         flex-direction: row;
+         padding-bottom: 20px;
+         padding-left: 60px;
+         padding-right: 60px;
+     }
+     .footer-info{
+        gap: none;
+        padding-top: 30px;
+        flex-direction: row;
+     }
+
+     .footer-contactos , .info-extra  , .footer-contactos-2{
+        border-right: none;
+     }
+ }
+
   
   
 
