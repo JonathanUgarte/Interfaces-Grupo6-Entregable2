@@ -4,19 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-<div class="container">
-    <div class="div-container">
-        <div class="logo-container">
-            
-            <img class="logo" src="./img/image 24.png" alt="logo">
-        </div>
-        <div class="register">
-                <p>Formulario</p>
-        </div>
-</div>
-</div>
+    <section class="background-color-login">
+        <section class="container-login-full">
+            <div class="Logo">
+                <img class="Image24" src="https://via.placeholder.com/400x229" alt="Logo de la página">
+            </div>
+            <div id="separator-line">
+            </div>
+            <div class="container-register">   
+                <div class="container-form">
+                    <span class="ini-session">Iniciar Sesion</span>
+                    <form class="form-principal" action="">
+                        <div id="first-label">
+                            <span class="name-user">Nombre de usuario</span>
+                            <input class="input-form" type="text" name="nickname" placeholder="nickname...">
+                        </div>
+                        <div>
+                            <span class="pw">Contraseña</span>
+                            <input class="input-form" type="password" placeholder="epicplay123...">
+                        </div>
+                        <div class="captcha-password-class">
+                            <img src="img/captcha-password.png" alt="" srcset="">
+                        </div>
+                        <div>
+                            <span class="pw">Repetir</span>
+                            <input class="input-form" type="password" placeholder="epicplay123...">
+                        </div>
+                        <div class="captcha-robot-class">
+                            <img src="img/captcha-robot.png" alt="" srcset="">
+                        </div>
+    
+                        <div class="conditions-accept">
+                            <input class="checkbox" type="checkbox">
+                            <span class="acept-terms-text">Acepto los terminos y condiciones</span>
+                        </div>
+                        <div class="change">
+                            <span class="no-account">Ya tienes cuenta?</span>
+                            <a class="register-now" id="register-now" href="index.html">Iniciar sesion</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
 </body>
 </html>
