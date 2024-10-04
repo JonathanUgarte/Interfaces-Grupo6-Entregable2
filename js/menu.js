@@ -1,5 +1,5 @@
-const nav = document.querySelector("#nav");
-const abrir = document.querySelector("#btn-menu");
+let nav = document.querySelector("#nav");
+let abrir = document.querySelector("#btn-menu");
 
 abrir.addEventListener("click", (event) => {
     nav.classList.toggle("visible");
