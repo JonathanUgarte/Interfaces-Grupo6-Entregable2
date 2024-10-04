@@ -16,18 +16,59 @@ h1,h2,h3{
 
 .header {
     display: flex;
-    align-items: center;
     background-color: #1629A1;
     width: 100%;
     position: fixed;
+    top: 0;          /* Asegura que se quede en la parte superior de la página */
+    left: 0;
+    z-index: 1000;   /* Asegura que el header esté por encima de otros elementos */
+}
+
+.nav {
+    display: none;
+    padding-top: 60px;
+    background-color: #4554B1;
+    width: 260px;
+    height: 780px;
+    position: fixed; /* Fija el menú en su posición */
+    left: -260px; /* Posición inicial fuera de la vista */
+    top: 0;
+    transition: left 0.10s ease; /* Añade una animación para el deslizamiento */
+    overflow-y: auto; /* Permite el scroll solo dentro del menú */
+}
+
+.nav.visible {
+    left: 0;
+    display: flex;
+}
+
+.nav-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+}
+.nav-list a {
+    gap: 5px;
+    font-size: x-large;
+    padding-left: 20px;
+    padding-right: 60px;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
+
     width: 100%;
 }
 
@@ -51,7 +92,7 @@ h1,h2,h3{
 }
 
 .logo {
-    padding-right: 50px;
+    
     padding-top: 10px;
     
 }
@@ -80,7 +121,43 @@ h1,h2,h3{
 
 .search-container {
     display: none;
+    position:relative;
 }
+.btn-buscar {
+    position: absolute; 
+    right: 10px; /* Ajusta según el padding interno de .search-container */
+    top: 50%;
+    transform: translateY(-50%); 
+}
+
+.juego-recomendados-container{
+    padding-top: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 491px;
+    background-image: url(/img/fondo-juegos-recomendados.png);
+}
+
+.juegos-recomendados{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 320px;
+    background-color: #4554B1;
+
+}
+
+.titulo{
+    height: 50px;
+    width: 525px;
+    font-weight: 400;
+    color: #FFF;
+    padding-top: 16px;
+    padding-left: 13px;
+}
+
 
 /*ESTILO DEL REGISTER */
 
@@ -396,35 +473,161 @@ div a {
 @media (min-width: 768px) {
    
    
-        .search-container{
-            display: flex;
-            align-items: center;
-            padding: 0px 20px;
-            height: 33px;
-            width: 275px;
-            background-color: #fff;
-            border-radius: 10px;
-            position: fixed;
-            top: 18px;
-            right: 600px;
-          }
-
+    .container {
+        justify-content: space-between; 
         
-        #lupa{
-            height: 20px;
-          
-        }
+    }
 
-        input {
-            border: none;
-            background-color: #fff;
-            width: 220px;
-        }
+    .menu-toggle { 
+        padding-right: 0; 
+        margin-left: 20px;
+    }
+
+    .logo {
+        margin-left: 20px; /* Ajustamos el margen izquierdo del logo para que coincida con el de los iconos */
+        
+    }
+
+    .icons {
+        margin-left: auto; 
+        margin-right: 20px; /* Agregamos margen derecho a los iconos */
+    }
+
+    .search-container {
+        /* ... otros estilos ... */
+        display: block;
+        position: absolute; 
+        left: 50%;
+        transform: translateX(-50%); 
+        width: 275px; 
+        height: 33px;  
+        border-radius: 9px; 
+    }
+    
+    .search-container input {
+        /* ... otros estilos ... */
+        width: 100%; /* El input ocupa todo el ancho del contenedor */
+        height: 100%; 
+        border-radius: 9px;
+        padding-right: 30px; /* Espacio para la lupa a la derecha */
+        position: relative; /* Para posicionar la lupa dentro */
+    }
+
+    .search-container input:focus {
+        outline: none;
+        border: none; /* Opcional, si también quieres eliminar el borde */
+    }
+
+    #buscar {
+        border: none;
+    }
+    
+    .btn-buscar {
+        position: absolute;
+        right: 5px; /* Ajusta según el padding interno de .search-container */
+        top: 50%;
+        transform: translateY(-50%);
+        background: none; /* Eliminamos el fondo del botón */
+        border: none;    /* Eliminamos el borde del botón */
+        cursor: pointer; /* Indicamos que es un elemento interactivo */
+    }
+    
+    
+    
+
+    nav { 
+        /* Eliminamos flex-grow para que no ocupe espacio extra */
+        flex-grow: 0; 
+        display: flex;
+        justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
+    }
+
+    /* ... el resto del media query se mantiene igual ... */
+}
+
+/* CSS JUEGO EN GAME.HTML */
+.juego-en-ejecucion-container{
+    display: flex;
+}
+.otros-juegos {
+    padding-top: 110px;
+    width: 20%;;
+    background-color:#121E67 ;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+}
+.juego-en-ejecucion {
+    width: 80%;
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #121E67;
+    padding-left: 220px;
+    padding-bottom: 200px;
+}
+
+.juego{
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #000;
+    opacity: 80%;
+     width: 912px;
+     height: 532px;
+     border-radius: 20px;
+    
+}
+
+.juego  h1 {
+    padding-top: 23px;
+    color: #FFF;
+    font-weight: 400;
+}
+
+.personajes {
+    
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.personajes h2 {
+    padding-bottom: 50px;
+    padding-right: 200px;
+    padding-left: 200px;
+    color: #FFF;
+    font-weight: 400;
+}
+.personajes img {
+    padding: 10px;
+    height: 80px;
+    width: 81px;
+}
+
+.btn-jugar-juego {
+    border: none;
+    font-size: large;
+    font-family: "Outfit", sans-serif;
+    color: #FFF;
+    background-color:#4554B1;
+    height: 50px;
+    width: 304px;
+    border-radius: 10px;
+    position: relative;
+    top: 110px;
+}
 
         .container{
             
             justify-content: space-between;
         }
     
-        
+
 }
