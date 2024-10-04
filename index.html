@@ -4,11 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <h1>Proyecto</h1>
-    <h2>subtitu</h2>
-    <h2>TITU</h2>
+    <section class="background-color-login">
+        <section class="container-login-full">
+            <div class="Logo">
+                <img class="Image24" src="https://via.placeholder.com/400x229" alt="Logo de la página">
+            </div>
+            <div id="separator-line">
+            </div>
+            <div id="container-login" class="container-login">
+                <div class="container-btn">
+                    <span class="ini-session">Iniciar Sesion</span>
+                    <div>
+                        <button class="btn-google" id="google">Iniciar con Google</button>
+                        <button class="btn" id="facebook">Iniciar con Facebook</button>
+                    </div>
+                </div>
+                <div class="separator-login">
+                    <div class="line"></div>
+                    <img class="icono-separador" src="img/separador.png" alt="Icono separador" >
+                    <div class="line"></div>
+                </div>
+                <div class="container-form">
+                    <form class="form-login" action="">
+                        <div id="first-label">
+                            <span class="name-user">Nombre de usuario</span>
+                            <input class="input-form" type="text" name="nickname" placeholder="nickname...">
+                        </div>
+                        <div>
+                            <span class="pw">Contraseña</span>
+                            <input class="input-form" type="password" placeholder="epicplay123...">
+                        </div>
+    
+                        <div id="pass-reset">
+                            <span class="forgot-pw">Olvide mi contraseña</span>
+                        </div>
+    
+                        <a type="button" id="btn-login" class="btn" href="home.html">Iniciar sesion</a>
+    
+                        <div class="change">
+                            <span class="no-account">¿Aun no tienes cuenta?</span>
+                            <a type="button" id="btn-register" class="btn" href="register.html">Registrarse</a>
+                        </div>
+                    </form>
+    
+                </div>
+            </div>
+        </section>
+    </section>
+    
 </body>
 </html>
