@@ -1,6 +1,6 @@
 * {
-    margin: 0; /* No olvides reiniciar el margen */
-    padding: 0; /* No olvides reiniciar el padding */
+    margin: 0; 
+    padding: 0; 
     box-sizing: border-box;
   }
 
@@ -21,12 +21,12 @@ body {
 
 .nav {
     display: none;
-    padding-top: 60px;
+    padding-top: 6.295907660020986vh;
     background-color: #4554B1;
-    width: 260px;
-    height: 780px;
+    width: 27.282266526757606vh;
+    height: 81.84679958027283vh;
     position: fixed; /* Fija el menú en su posición */
-    left: -260px; /* Posición inicial fuera de la vista */
+    left: -27.282266526757606vh; /* Posición inicial fuera de la vista */
     top: 0;
     transition: left 0.10s ease; /* Añade una animación para el deslizamiento */
     overflow-y: auto; /* Permite el scroll solo dentro del menú */
@@ -49,8 +49,8 @@ body {
 .nav-list a {
     gap: 5px;
     font-size: x-large;
-    padding-left: 20px;
-    padding-right: 60px;
+    padding-left: 2.0986358866736623vh;
+    padding-right: 6.295907660020986vh;
     color: #FFF;
     display: flex;
     justify-content: center;
@@ -70,29 +70,29 @@ body {
 
 .logo {
     
-    padding-top: 10px;
+    padding-top: 1.0493179433368311vh;
     
 }
 
 
 .icons a {
-    padding-left: 10px;
+    padding-left: 1.0493179433368311vh;
 }
 
 .icons img {
-    width: 30px;
-    height: 30px;
+    width: 3.147953830010493vh;
+    height: 3.147953830010493vh;
 }
 
 .menu-toggle {
-    padding-right: 70px;
+    padding-right: 7.345225603357817vh;
     cursor: pointer;
     position: relative;
 }
 
 .icon-menu{
-    width: 30px;
-    height: 30px;
+    width: 3.147953830010493vh;
+    height: 3.147953830010493vh;
 }
 
 
@@ -110,7 +110,7 @@ body {
 /* JUEGOS RECOMENDADOS MOBILE */
 
 .juego-recomendados-container{
-    padding-top: 60px;
+    padding-top: 6.295907660020986vh;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -131,8 +131,8 @@ body {
 }
 
 .titulo{
-    height: 50px;
-    width: 525px;
+    height: 5.246589716684155vh;
+    width: 55.08919202518363vh;
     font-weight: 400;
     color: #FFF;
     padding-top: 16px;
@@ -367,8 +367,8 @@ body {
     text-align: center;
     background-color: #000;
     opacity: 80%;
-     width: 912px;
-     height: 532px;
+     width: 95.697796432319vh;
+     height: 55.82371458551941vh;
      border-radius: 20px;
     
 }
@@ -415,8 +415,8 @@ body {
 
 .intrucciones-container{
     padding: 30px;
-    height: 1420px;
-    width: 912px;
+    height: 1480px;
+    width: 95.697796432319vh;
     border-radius: 20px;
     background-color: #1629A1;
 }
@@ -452,8 +452,8 @@ body {
 
 .compartir {
   
-    width: 170px;
-    height: 30px;
+    width: 17.83840503672613vh;
+    height:  3.147953830010493vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -506,7 +506,7 @@ body {
 .comentarios-container {
     border-radius: 20px;
     height: 250px;
-    width: 810px;
+    width: 84.99475341028331vh;
     background-color: #5D5D5D;
     margin-left: 20px;
     margin-top: 20px;
