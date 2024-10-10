@@ -11,7 +11,7 @@
   }
   
   .slider.inclinando { 
-    transform: perspective(500px) rotateY(15deg); /* Inclinación en el slider */
+    transform: perspective(300px) rotateY(15deg); 
   }
 body {
     font-family: "Outfit", sans-serif;
@@ -179,6 +179,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
    
   }
   
@@ -340,13 +341,14 @@ body {
   .game-card:hover .badge {
     display: none; 
   }
+  .game-card-main:hover .badge {
+    display: none; 
+  }
 
   .game-image:hover{
     opacity: 0.5;
   }
-  .item:hover .add { 
-    display: none; 
-  }
+
   
   .add {
     z-index: 2; 
@@ -355,9 +357,7 @@ body {
     display: none; 
   }
  
-  .game-card.item:hover .add { 
-    display: none; 
-  }
+ 
   
   .game-card:hover img.game-image { 
     opacity: 0.5; 
