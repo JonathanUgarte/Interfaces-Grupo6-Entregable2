@@ -1,9 +1,18 @@
+
 * {
     margin: 0; /* No olvides reiniciar el margen */
     padding: 0; /* No olvides reiniciar el padding */
     box-sizing: border-box;
   }
+/* ... (resto de tu CSS) ... */
 
+.slider {  
+    transition: transform 0.5s ease-in-out; /* Transición en el slider */
+  }
+  
+  .slider.inclinando { 
+    transform: perspective(500px) rotateY(15deg); /* Inclinación en el slider */
+  }
 body {
     font-family: "Outfit", sans-serif;
     background-color: #121E67;
@@ -170,6 +179,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
   }
   
   .slider {
@@ -325,14 +335,34 @@ body {
     margin-right: 120px;
     font-size: 18px;
   }
+ 
 
   .game-card:hover .badge {
     display: none; 
   }
 
+  .game-image:hover{
+    opacity: 0.5;
+  }
+  .item:hover .add { 
+    display: none; 
+  }
+  
+  .add {
+    z-index: 2; 
+  }
+  .game-card:hover .badge { 
+    display: none; 
+  }
+ 
+  .game-card.item:hover .add { 
+    display: none; 
+  }
+  
   .game-card:hover img.game-image { 
     opacity: 0.5; 
   }
+
 
 /* CSS JUEGO EN GAME.HTML */
 .juego-en-ejecucion-container{
@@ -764,16 +794,31 @@ padding-left: 13px;
     overflow-x: auto; /* Permitir desplazamiento horizontal */
     scroll-behavior: smooth; /* Desplazamiento suave */
     gap: 10px; /* Espacio entre las tarjetas */
-    transition: transform 0.3s ease-in-out; /* Transición suave */
+ 
     position: relative;
+    
+  
+    
   }
 
   .game-card {
     min-width: 200px; /* Ajusta el ancho de cada tarjeta */
     margin-right: 10px; /* Espacio entre tarjetas */
     flex-shrink: 0;
+    
+    
+    
+  }
+  @keyframes inclinacion {
+    0% { transform: rotateY(0deg); } 
+    50% { transform: rotateY(30deg); } /* Aumenta el ángulo de inclinación */
+    100% { transform: rotateY(0deg); } 
   }
   
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
   
 
   .flecha-izquierda, .flecha-derecha {
