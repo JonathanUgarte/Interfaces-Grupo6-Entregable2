@@ -4,7 +4,7 @@ let prev = document.getElementById('prev');
 
 let active = 0; // Start with the first card
 const totalItems = items.length;
-
+  
 // Function to load the current view
 function loadShow() {
   // Calculate the offset for the slider
