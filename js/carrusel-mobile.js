@@ -2,31 +2,56 @@ let items = document.querySelectorAll('.slider .item');
 let next = document.getElementById('next');
 let prev = document.getElementById('prev');
 
-let active = 0; // Start with the first card
+let active = 0; 
 const totalItems = items.length;
-  
+let isTransitioning = false; 
+
+
+let slider = document.querySelector('.slider');
+slider.style.width = `${totalItems * (310 + 10)}px`; 
+
 // Function to load the current view
 function loadShow() {
-  // Calculate the offset for the slider
-  let offset = -active * 310; // 310px is the width of each card plus margin
-  document.querySelector('.slider').style.transform = `translateX(${offset}px)`;
+    let offset = -active * (310 + 10); 
+    slider.style.transform = `translateX(${offset}px)`;
+}
+
+// Disable buttons while transitioning
+function disableButtons() {
+    isTransitioning = true;
+    slider.addEventListener('transitionend', () => {
+        isTransitioning = false;
+    }, { once: true });
 }
 
 // Event for next button
 next.onclick = function () {
-  // Update the active index, looping back to 0 if necessary
-  active = (active + 1) % totalItems; 
-  loadShow();
+    if (!isTransitioning) {
+        if (active < totalItems - 1) {
+            active++;
+        } else {
+            active = 0; 
+        }
+        loadShow();
+        disableButtons();
+    }
 };
 
 // Event for prev button
 prev.onclick = function () {
-  // Update the active index, looping back to the last item if necessary
-  active = (active - 1 + totalItems) % totalItems; 
-  loadShow();
+    if (!isTransitioning) {
+        if (active > 0) {
+            active--;
+        } else {
+            active = totalItems - 1; 
+        }
+        loadShow();
+        disableButtons();
+    }
 };
 
 // Initial load
 loadShow();
+
 
 
