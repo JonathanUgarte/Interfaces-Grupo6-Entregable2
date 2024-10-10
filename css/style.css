@@ -213,9 +213,10 @@ body {
     opacity: 0.5;
   }
 
-  .game-image .badge{
-    display: none;
-  }
+  .game-image:hover .badge.add {
+    display: none; /* Oculta el badge al hacer hover */
+}
+
   /*HOVER JUEGO COSMIC CLASH FIN*/
   .game-card-carrusel {
     position: relative;
