@@ -4,7 +4,7 @@
     padding: 0; 
     box-sizing: border-box;
   }
-/* ... (resto de tu CSS) ... */
+
 
 .slider {  
     transition: transform 0.5s ease-in-out; /* Transición en el slider */
@@ -117,9 +117,8 @@ body {
 }
 
 /* JUEGOS RECOMENDADOS MOBILE */
-
-.juego-recomendados-container{
-    padding-top: 6.295907660020986vh;
+.juego-recomendados-container {
+    padding-top: 6.3vh;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -128,30 +127,26 @@ body {
     background-image: url(/img/fondo-juegos-recomendados.png);
 }
 
-
-.juegos-recomendados{
+.juegos-recomendados {
     display: flex;
     flex-direction: column;
     height: 320px;
     width: 100%;
     overflow: hidden;
     background-color: #4554B1;
-
 }
 
-.titulo{
-    height: 5.246589716684155vh;
-    width: 55.08919202518363vh;
+.titulo {
+    height: 5.25vh;
+    width: 55.08vh;
     font-weight: 400;
     color: #FFF;
     padding-top: 16px;
     padding-left: 13px;
 }
 
-
-
-.game-card-main{
-    border-radius:500px;
+.game-card-main {
+    border-radius: 500px;
     width: 310px;
     height: 200px;
     position: relative;
@@ -161,16 +156,7 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.carousel {
-    position: relative;
-    width: 310px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .carrusel-container{
+.carrusel-container {
     width: 100%;
     height: 100%;
     position: relative;
@@ -179,37 +165,56 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-   
-  }
-  
-  .slider {
+    overflow: hidden; /* Oculta el contenido que sobresale */
+}
+
+.carousel {
+    position: relative;
+    width: 310px; /* Ancho exacto de una tarjeta */
+    height: 200px;
+    overflow: hidden; /* Asegura que no se vea el siguiente ítem */
+    border-radius: 10px;
+}
+
+.slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
-  }
-  
-  .item {
-    display: flex;
+    /* No necesita overflow en el slider ya que se maneja en el contenedor */
+}
+
+.item {
     min-width: 310px;
     height: 200px;
-  }
-  
-  .item:nth-child(2) {
-    background-color: #121E67;
-  }
-  
-  .item:nth-child(3) {
-    background-color: #121E67;
+    margin-right: 10px; /* Espacio entre ítems si lo necesitas */
+}
 
-  }
-  
+
   
   input[type="radio"] {
     display: none;
   }
   
- 
+  .tiktok, .contacto, .facebook, .telegram, .twitter, .instagram, .desarrolladores, .terminos-uso, .privacidad, .cookies, .ayuda {
+    text-decoration: none;
+    color: #3498db;
+    transition: all 0.3s ease;
+  }
+  
+  .tiktok:hover, .contacto:hover, .facebook:hover, .telegram:hover, .twitter:hover, .instagram:hover, .desarrolladores:hover, .terminos-uso:hover, .privacidad:hover, .cookies:hover, .ayuda:hover {
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
 
+    /*HOVER JUEGO COSMIC CLASH */
+  .game-image:hover{
+    opacity: 0.5;
+  }
+
+  .game-image:hover .badge.add {
+    display: none; /* Oculta el badge al hacer hover */
+}
+
+  /*HOVER JUEGO COSMIC CLASH FIN*/
   .game-card-carrusel {
     position: relative;
     width: 100px;
@@ -219,16 +224,6 @@ body {
     overflow: hidden;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-.separador1 , .separador2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100%;
-}
-
 
 
 
@@ -1272,14 +1267,206 @@ div a {
          justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
      }
  
+
+     .carrusel-container {
+        display: none;
+    } 
      /* ... el resto del media query se mantiene igual ... */
  
+    /*ANIMACION CARGA DE LA OTRA PAGINA */
+    
+    /* ANIMACION LOADING 
+
+.container-loading{
+    height: 400px;
+    width: 350px;
+    background-color: rgb(246, 246, 246, .1);
+    border-radius: 25px;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 45px;
+    margin-top: 120px;
+}
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #CB8AD5;
+    margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+}
+.lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+}
+.lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+}
+.lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+}
+.lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+}
+.lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+}
+.lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+}
+.lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+}
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  */
+/*ANIMACION BARRA DE CARGA 
+
+#container-barra {
+    width: 80%;
+    height: 20px;
+    margin: 0 auto;
+    border-radius: 25px;
+    box-shadow: 0px 0px 90px 1px rgba(255,255,255,1);
+}
+
+#barra {
+    width: 0;
+    height: 100%;
+    background: #CB8AD5;
+    border-radius: 25px;
+}
+
+#texto-barra {
+    font-size: 15px;
+    font-weight: bold;
+    width: 280px;
+    height: 100%;
+    text-align: center;
+    color: #000000;
+    mix-blend-mode: multiply;
+}
+
+#texto-barra:after {
+    content: '0%';
+}
+
+@keyframes progreso {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes porcentaje {
+    0% {
+        content: '0%';
+    }
+    25% {
+        content: '25%';
+    }
+    65% {
+        content: '50%';
+    }
+    75% {
+        content: '75%';
+    }
+    100% {
+        content: '100%';
+    }
+}
+
+#barra {
+    animation: progreso 5s linear;
+}
+
+#texto-barra:after {
+    animation: porcentaje 5s linear;
+}
+
+  ANIMACION CARGA DE LA OTRA PAGINA FIN*/
+
      /*JUEGOS RECOMENDADOS DESKTOP */
  
-     .carrusel-container {
-         display: none;
-     } 
- 
+
+     /*ANIMACION CARRUSEL
+
+     
+     
+     .game-card{
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .contenedor-carrusel.skewder .game-card {
+        transform: skewX(-10deg);
+      }
+      
+      .contenedor-carrusel.skewizq .game-card  {
+        transform: skewX(10deg);
+      }
+      
+      ::-webkit-scrollbar{
+        display: none;
+      }
+      ANIMACION CARRUSEL FIN*/
+
      .juegos-recomendados-desktop {
          display: flex;
          padding: 15px;
