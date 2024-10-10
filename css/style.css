@@ -17,6 +17,48 @@ body {
     font-family: "Outfit", sans-serif;
     background-color: #121E67;
 }
+/* REGISTER LOADING*/
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #320bc0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-percentage {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+  
+  .container-login-full { 
+    display: none; 
+  }
+
 /* HEADER MOBILE */
 .header {
     display: flex;
@@ -51,10 +93,12 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
     list-style: none;
+    padding-left: 20px;
 }
+.nav-list li {
+    margin-top: 35px; /* Ajusta este valor para controlar el espacio entre elementos */
+  }
 .nav-list a {
     gap: 5px;
     font-size: x-large;
@@ -62,9 +106,9 @@ body {
     padding-right: 6.295907660020986vh;
     color: #FFF;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+   
+    align-items: center; 
+    text-align: left; 
     color: #ffffff;
     text-decoration: none;
 }
@@ -87,7 +131,22 @@ body {
 .icons a {
     padding-left: 1.0493179433368311vh;
 }
-
+.icons a:first-child {
+    position: relative; /* Para que el contador se posicione relativo al enlace */
+  }
+  
+  .contador-carrito {
+    display: none;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar el contador */
+    background-color: red; /* Color de fondo del contador */
+    color: white; 
+    border-radius: 50%; /* Hacer el contador circular */
+    padding: 2px 6px; /* Ajustar el padding según el tamaño del número */
+    font-size: 18px; /* Ajustar el tamaño de la fuente */
+  }
 .icons img {
     width: 3.147953830010493vh;
     height: 3.147953830010493vh;
@@ -145,16 +204,7 @@ body {
     padding-left: 13px;
 }
 
-.game-card-main {
-    border-radius: 500px;
-    width: 310px;
-    height: 200px;
-    position: relative;
-    margin-bottom: 22px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
+
 
 .carrusel-container {
     width: 100%;
@@ -296,6 +346,7 @@ body {
   }
 
   .game-card:hover .game-info {
+    background-color: rgba(0, 0, 0, 0.7);
     display: block;
   }
 
@@ -317,6 +368,10 @@ body {
     transform: translateX(0); 
     z-index: 1;
   }
+  .game-icon:active { /* Estilos al hacer clic */
+    transform: translateY(2px); 
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); 
+  }
   .price-container {
     position: absolute;
     bottom: 3px; 
@@ -336,8 +391,62 @@ body {
   .game-card:hover .badge {
     display: none; 
   }
+  .game-card-main {
+    border-radius: 500px;
+    width: 310px;
+    height: 200px;
+    position: relative;
+    margin-bottom: 22px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    position: relative; 
+    overflow: hidden; 
+}
   .game-card-main:hover .badge {
     display: none; 
+  }
+  .game-card-main:hover .hover-content {
+    opacity: 1; 
+  }
+  .hover-content a button { 
+    position: absolute; 
+    bottom: 20px;  
+    right: 20px; 
+    background-color: #00FF00; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 26px; 
+    width: 120px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+.hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: flex-start;  
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white;
+    opacity: 0; 
+    transition: opacity 0.2s ease; 
+    padding: 20px; 
+}
+.hover-content a button:active {
+    transform: translateY(5px); 
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); 
+}
+  .hover-content h2 {
+    font-size: 18px; 
+    margin: 0; 
   }
 
   .game-image:hover{
@@ -475,6 +584,16 @@ body {
     color: #FFF;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    display: none; /* Inicialmente oculto */
+    z-index: 999; /* Debajo del menú de compartir */
+}
 .compartir {
   
     width: 17.83840503672613vh;
@@ -486,8 +605,102 @@ body {
     color: #FFF;
     border-radius: 15px;
     border: none;
+    cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.5s ease; /* Transición suave para transformaciones y color (0.5s) */
 }
 
+.compartir:hover {
+    background-color: #1A6F64; /* Color de fondo al pasar el ratón */
+    transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el ratón */
+}
+
+.compartir:active {
+    transform: scale(0.4); /* Efecto de pulsación al hacer clic */
+}
+
+.share-menu {
+    position: fixed;
+    top: 35%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    background-color:#6D6D6D;
+    width: 400px;
+    padding: 10px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Inicialmente oculto */
+}
+
+.share-option {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.share-menu img {
+    padding-bottom: 3px;
+}
+
+.share-option:hover {
+    background-color: #8d8d8d8d;
+}
+
+.share-menu.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0); /* Aparece suavemente desde arriba */
+}
+.share-container {
+    position: relative;
+    display: inline-block;
+}
+
+.share-menu-container {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+.separador2 {
+   display: flex;
+    gap: 28px;
+}
+.separador {
+    display: flex;
+    padding-bottom: 5vh;
+    gap: 13px;
+}
+.share-menu-container h1 {
+    padding-left: 22px;
+    color: #ffffff;
+}
+.compartir-top {
+    display: flex;
+}
+.exit {
+    padding-left: 57px;
+}
+.link-compartir {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+}
+.link-compartir a {
+    color: #FFF;
+    text-decoration: underline;
+}
 .info {
     display: flex;
     flex-direction: column;
@@ -525,7 +738,56 @@ body {
 .gameplay-container {
     display: flex;
     justify-content: center;
+}
+
+.carrusel-gameplay-container {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.carrusel-gameplay {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-gameplay-slide {
+    min-width: 100%;
+    height: 100%;
   
+}
+
+.carrusel-gameplay-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.carrusel-gameplay-controls {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.carrusel-gameplay-dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carrusel-gameplay-dot.active {
+    background-color: #4CAF50;
 }
 
 .comentarios-container {
@@ -591,12 +853,23 @@ body {
     color: #FFF;
     gap: 5px;
     border: none;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .btn-enviar-container {
     width: 100%;
     display: flex;
     justify-content: end;
+}
+
+
+.btn-enviar:hover {
+    background-color: #1A6F64; /* Color de fondo al pasar el ratón */
+    transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el ratón */
+}
+
+.btn-enviar:active {
+    transform: scale(0.4); /* Efecto de pulsación al hacer clic */
 }
 
 
@@ -877,7 +1150,7 @@ padding-left: 13px;
     justify-content: space-evenly;
     border-radius: 20px;
     flex-direction: row;
-    background-color: #4554B1;
+    background-color:rgba(255, 255, 255, 0.5);
     margin: 5%;
 }
 
@@ -1064,7 +1337,7 @@ padding-left: 13px;
     flex-direction: column;
 }
 
-/* SEPARADOR ICONO */
+
 
 /* FORMULARIO REGISTER*/
 .form-principal{
