@@ -6,17 +6,17 @@
   }
 
 
-.slider {  
-    transition: transform 0.5s ease-in-out; /* Transición en el slider */
-  }
-  
-  .slider.inclinando { 
-    transform: perspective(300px) rotateY(15deg); 
-  }
-body {
-    font-family: "Outfit", sans-serif;
-    background-color: #121E67;
-}
+  body {
+      font-family: "Outfit", sans-serif;
+      background-color: #121E67;
+    }
+    .slider {  
+        transition: transform 0.5s ease-in-out; /* Transición en el slider */
+      }
+      
+      .slider.inclinando { 
+        transform: perspective(300px) rotateY(15deg); 
+      }
 /* REGISTER LOADING*/
 
 #loading-screen {
@@ -75,12 +75,12 @@ body {
     padding-top: 6.295907660020986vh;
     background-color: #4554B1;
     width: 27.282266526757606vh;
-    height: 81.84679958027283vh;
+    height: 88.84679958027283vh;
     position: fixed; /* Fija el menú en su posición */
     left: -27.282266526757606vh; /* Posición inicial fuera de la vista */
     top: 0;
     transition: left 0.10s ease; /* Añade una animación para el deslizamiento */
-    overflow-y: auto; /* Permite el scroll solo dentro del menú */
+    overflow-y: hidden; /* Permite el scroll solo dentro del menú */
     z-index: 10; 
 }
 
@@ -101,16 +101,20 @@ body {
   }
 .nav-list a {
     gap: 5px;
-    font-size: x-large;
+    font-size: small;
     padding-left: 2.0986358866736623vh;
     padding-right: 6.295907660020986vh;
     color: #FFF;
     display: flex;
-   
     align-items: center; 
     text-align: left; 
     color: #ffffff;
     text-decoration: none;
+}
+
+.nav-list a img {
+    height: 15px;
+    width: 15px;
 }
 
 .container {
@@ -182,17 +186,20 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 491px;
+    height: 705px;
     background-image: url(/img/fondo-juegos-recomendados.png);
 }
 
 .juegos-recomendados {
     display: flex;
     flex-direction: column;
-    height: 320px;
+    height: 500px;
     width: 100%;
     overflow: hidden;
     background-color: #4554B1;
+}
+.juego-main {
+    padding-left: 30px;
 }
 
 .titulo {
@@ -200,44 +207,10 @@ body {
     width: 55.08vh;
     font-weight: 400;
     color: #FFF;
-    padding-top: 16px;
+    padding-top: 6px;
     padding-left: 13px;
+
 }
-
-
-
-.carrusel-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    padding-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Oculta el contenido que sobresale */
-}
-
-.carousel {
-    position: relative;
-    width: 310px; /* Ancho exacto de una tarjeta */
-    height: 200px;
-    overflow: hidden; /* Asegura que no se vea el siguiente ítem */
-    border-radius: 10px;
-}
-
-.slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    /* No necesita overflow en el slider ya que se maneja en el contenedor */
-}
-
-.item {
-    min-width: 310px;
-    height: 200px;
-    margin-right: 10px; /* Espacio entre ítems si lo necesitas */
-}
-
 
   
   input[type="radio"] {
@@ -330,7 +303,8 @@ body {
   }
 
   .juegos-recomendados-desktop {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Hovers carrusel */
@@ -1057,12 +1031,25 @@ padding-left: 13px;
     overflow: hidden; 
 }
 
+.carrusel-juegos-recomendados {
+    padding-top: 13px;
+    padding-left: 10px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Ajusta según tu diseño */
+    overflow: hidden; 
+}
+.juego-main {
+    padding-top: 10px;
+}
+
   .contenedor-carrusel {
     display: flex;
     overflow-x: auto; /* Permitir desplazamiento horizontal */
     scroll-behavior: smooth; /* Desplazamiento suave */
     gap: 10px; /* Espacio entre las tarjetas */
- 
     position: relative;
     
   
@@ -1090,7 +1077,7 @@ padding-left: 13px;
   
 
   .flecha-izquierda, .flecha-derecha {
-   
+    
     position: absolute;
     top: 50%; /* Centra verticalmente */
     transform: translateY(-50%); /* Ajuste para mantener centrado */
@@ -1102,8 +1089,9 @@ padding-left: 13px;
 }
 
 .flecha-derecha img {
-    border:20px
+    padding-right:15px;
 }
+
 .flecha-izquierda {
    
     left: 0;
@@ -1111,13 +1099,21 @@ padding-left: 13px;
 }
 
 .flecha-derecha {
+ 
     right: 0;
     background-color: transparent; /* Fondo transparente */
 
     }
-    .flecha-izquierda img, .flecha-derecha img {
-        width: 50px; /* Ajusta según el tamaño de tu imagen */
-        height: 90px; 
+    .flecha-izquierda img {
+        padding-left: 15px;
+    }
+     .flecha-derecha img {
+        width: 60px; /* Ajusta según el tamaño de tu imagen */
+        height: 65px; 
+    }
+    .flecha-izquierda img {
+         width: 50px; /* Ajusta según el tamaño de tu imagen */
+        height: 90px;
     }
 
     .flecha-izquierda, .flecha-derecha {
@@ -1539,218 +1535,42 @@ div a {
          display: flex;
          justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
      }
+
+     .nav-list a {
+        font-size: x-large;
+     }
+     .nav-list a img {
+        height: 40px;
+        width: 40px;
+     }
  
 
      .carrusel-container {
         display: none;
     } 
-     /* ... el resto del media query se mantiene igual ... */
  
-    /*ANIMACION CARGA DE LA OTRA PAGINA */
-    
-    /* ANIMACION LOADING 
-
-.container-loading{
-    height: 400px;
-    width: 350px;
-    background-color: rgb(246, 246, 246, .1);
-    border-radius: 25px;    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-}
-
-.lds-roller {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 45px;
-    margin-top: 120px;
-}
-.lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 40px 40px;
-}
-.lds-roller div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #CB8AD5;
-    margin: -4px 0 0 -4px;
-}
-.lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-}
-.lds-roller div:nth-child(1):after {
-    top: 63px;
-    left: 63px;
-}
-.lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-}
-.lds-roller div:nth-child(2):after {
-    top: 68px;
-    left: 56px;
-}
-.lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-}
-.lds-roller div:nth-child(3):after {
-    top: 71px;
-    left: 48px;
-}
-.lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-}
-.lds-roller div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-}
-.lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-}
-.lds-roller div:nth-child(5):after {
-    top: 71px;
-    left: 32px;
-}
-.lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-}
-.lds-roller div:nth-child(6):after {
-    top: 68px;
-    left: 24px;
-}
-.lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-}
-.lds-roller div:nth-child(7):after {
-    top: 63px;
-    left: 17px;
-}
-.lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-}
-.lds-roller div:nth-child(8):after {
-    top: 56px;
-    left: 12px;
-}
-@keyframes lds-roller {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-  */
-/*ANIMACION BARRA DE CARGA 
-
-#container-barra {
-    width: 80%;
-    height: 20px;
-    margin: 0 auto;
-    border-radius: 25px;
-    box-shadow: 0px 0px 90px 1px rgba(255,255,255,1);
-}
-
-#barra {
-    width: 0;
-    height: 100%;
-    background: #CB8AD5;
-    border-radius: 25px;
-}
-
-#texto-barra {
-    font-size: 15px;
-    font-weight: bold;
-    width: 280px;
-    height: 100%;
-    text-align: center;
-    color: #000000;
-    mix-blend-mode: multiply;
-}
-
-#texto-barra:after {
-    content: '0%';
-}
-
-@keyframes progreso {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-@keyframes porcentaje {
-    0% {
-        content: '0%';
-    }
-    25% {
-        content: '25%';
-    }
-    65% {
-        content: '50%';
-    }
-    75% {
-        content: '75%';
-    }
-    100% {
-        content: '100%';
-    }
-}
-
-#barra {
-    animation: progreso 5s linear;
-}
-
-#texto-barra:after {
-    animation: porcentaje 5s linear;
-}
-
-  ANIMACION CARGA DE LA OTRA PAGINA FIN*/
-
-     /*JUEGOS RECOMENDADOS DESKTOP */
- 
-
-     /*ANIMACION CARRUSEL
-
-     
-     
-     .game-card{
-        transition: transform 0.3s ease-in-out;
-      }
-      
-      .contenedor-carrusel.skewder .game-card {
-        transform: skewX(-10deg);
-      }
-      
-      .contenedor-carrusel.skewizq .game-card  {
-        transform: skewX(10deg);
-      }
-      
-      ::-webkit-scrollbar{
-        display: none;
-      }
-      ANIMACION CARRUSEL FIN*/
-
      .juegos-recomendados-desktop {
          display: flex;
+         flex-direction: row;
          padding: 15px;
          padding-top: 35px;
          width: 100%;
          height: 100%;
+         align-items: center;
      }
- 
+    
+
      .juegos-recomendados {
          padding-left: 10px;
+         height: 320px;
      }
+     .juego-recomendados-container{
+        height: 491px;
+     }
+
+     .juego-main {
+        padding:0;
+    }
  
      .titulo {
          font-size: 30px;
@@ -1760,12 +1580,18 @@ div a {
          flex-direction: column;
      }
  
-     .juegos-otros-top , .juegos-otros-bottom {
-         display: flex;
-         flex-direction: row;
-         padding-left: 40px;
-         gap: 30px;
-     }
+     .juegos-otros-top, .juegos-otros-bottom {
+        display: flex;
+        flex-direction: row;
+        padding-left: 40px;
+        gap: 30px;
+        overflow-x: auto; /* Permite el scroll horizontal */
+        scroll-behavior: smooth; /* Desplazamiento suave */
+    }
+    .titulo {
+        padding-top: 25px;
+    }
+
      
      /* JUEGOS POR CATEGORIA */
 
