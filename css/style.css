@@ -730,29 +730,27 @@
 .carrusel-gameplay-slide {
     min-width: 100%;
     height: 100%;
-  
+    padding-right: 10px; /* Espacio entre las imágenes */
 }
 
 .carrusel-gameplay-slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-}
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+    transition: opacity 0.5s ease-in-out;
+  }
 
 .carrusel-gameplay-controls {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
 
 .carrusel-gameplay-dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
+    height: 18px;
+    width: 18px;
+    margin: 0 8px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
@@ -1137,6 +1135,56 @@ padding-left: 13px;
 }
 
 /* REGISTER */ 
+.register-btn {
+    display: none; 
+    width: 250px;
+    height: 25px;
+    background-color: #237C75; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px; 
+    border: none;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+#loading-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Estilo para el porcentaje/mensaje de éxito */
+#loading-percentage {
+    font-size: 40px;
+    color: #237C75;
+}
+
+/* Mensaje de éxito: oculto por defecto */
+#successMessage {
+    display: none;
+    color: #237C75; /* Color verde personalizado */
+    font-size: 40px;
+    text-align: center;
+}
+
+.loading-content {
+    text-align: center;
+}
+
 
 .container-login-full {
     height: 500px;
@@ -1246,6 +1294,25 @@ padding-left: 13px;
     cursor: pointer;
 }
 
+.register-btn {
+    display: none; 
+    width: 250px;
+    height: 25px;
+    background-color: #237C75; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-top: 4px;
+}
+.register-btn:hover{
+    background-color: #2A9D8F;
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+}
 #register-now:hover{
     background-color: #2A9D8F;
     transition: 0.5s ease-in-out;
@@ -1285,11 +1352,12 @@ padding-left: 13px;
     background-color: #ffffff;
 }
 
-#google:hover{
-    background-color: #81C8BC;
+#google:hover {
+    background-color: #f2f2f2;
+
     transition: 0.5s ease-in-out;
     scale: 1.05;
-}
+  }
 
 #facebook{
     margin-top: 5px;
@@ -1530,10 +1598,10 @@ div a {
      
  
      nav { 
-         /* Eliminamos flex-grow para que no ocupe espacio extra */
+      
          flex-grow: 0; 
          display: flex;
-         justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
+         justify-content: flex-start; 
      }
 
      .nav-list a {
