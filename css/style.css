@@ -747,7 +747,7 @@
     color: #FFF;
     width: 100%;
 }
-
+    /*GAMEPLAY CARRUSEL */
 .carrusel-gameplay-container {
     display: flex;
     flex-direction: column;
@@ -768,56 +768,22 @@
 .carrusel-gameplay-slide {
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transiciones para opacidad y movimiento */
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 0;
+    transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones para opacidad y movimiento */
 }
 
 .carrusel-gameplay-slide.active {
-    opacity: 1;
-    transform: translateX(0); /* Sin desplazamiento para la imagen activa */
+    opacity: 1; /* Totalmente visible */
+    transform: translateX(0); /* Se mueve a su lugar */
 }
 
-.carrusel-gameplay-slide.next {
-    opacity: 0;
-    transform: translateX(100%); /* Desplazar hacia la derecha para la siguiente imagen */
-}
-
-.carrusel-gameplay-slide.prev {
-    opacity: 0;
-    transform: translateX(-100%); /* Desplazar hacia la izquierda para la imagen anterior */
-}
-
-.carrusel-gameplay-slide.active.next {
-    opacity: 1; /* Hacer visible la próxima imagen cuando es activa */
-    transform: translateX(0); /* Volver a la posición original */
-}
-
-.carrusel-gameplay-slide.active.prev {
-    opacity: 1; /* Hacer visible la imagen anterior cuando es activa */
-    transform: translateX(0); /* Volver a la posición original */
-}
-
-.carrusel-gameplay-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.carrusel-gameplay-play-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.carrusel-gameplay-play-overlay img {
-    width: 60px;
-    height: 60px;
-    opacity: 0.8;
+.carrusel-gameplay-slide.exit {
+    opacity: 0; /* Se vuelve invisible */
+    transform: translateX(-100%); /* Se mueve fuera de la pantalla a la izquierda */
 }
 
 .carrusel-gameplay-dots {
@@ -842,6 +808,7 @@
     background-color: #121E67; /* Color del punto activo */
 }
 
+/*COMENTARIOS */
 .comentarios-container {
     border-radius: 20px;
     height: 250px;
@@ -951,7 +918,7 @@
   .puntuacion-container label:hover ~ label {
     color: #FFD700; /* Color de estrellas al pasar el cursor */
   }
-
+  /*CARDS JUEGOS */
   .game-card-container {
     border-radius: 30px;
     background-color: #1629A1;
