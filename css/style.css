@@ -167,6 +167,41 @@
     height: 3.147953830010493vh;
 }
 
+/* Contenedor del menú */
+.profile-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo del menú desplegable */
+.profile-dropdown {
+    display: none;
+    position: fixed;
+    top: 55px; /* Ajusta según la altura que quieras */
+    right: 0;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    background-color:#4554B1;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 150px;
+}
+
+/* Estilos de los enlaces dentro del menú */
+.profile-dropdown a {
+    font-size: small;
+    display: block;
+    padding: 8px 12px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+
+.profile-dropdown a:hover {
+    background-color: #1629A1;
+    opacity: 0.5;
+}
+
 
 .search-container {
     display: none;
@@ -702,6 +737,10 @@
     display: flex;
     flex-direction: row;
 }
+.gif-controles img {
+    height: 160px;
+    width: 200px;
+}
 
 .controles {
     text-align: justify;
@@ -709,57 +748,98 @@
     width: 100%;
 }
 
-.gameplay-container {
+.carrusel-gameplay-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.carrusel-gameplay-container {
+.carrusel-gameplay-content {
     position: relative;
     width: 600px;
     height: 300px;
     overflow: hidden;
-    border-radius: 20px;
-}
-
-.carrusel-gameplay {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    border-radius: 15px;
 }
 
 .carrusel-gameplay-slide {
-    min-width: 100%;
+    width: 100%;
     height: 100%;
-    padding-right: 10px; /* Espacio entre las imágenes */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transiciones para opacidad y movimiento */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carrusel-gameplay-slide.active {
+    opacity: 1;
+    transform: translateX(0); /* Sin desplazamiento para la imagen activa */
+}
+
+.carrusel-gameplay-slide.next {
+    opacity: 0;
+    transform: translateX(100%); /* Desplazar hacia la derecha para la siguiente imagen */
+}
+
+.carrusel-gameplay-slide.prev {
+    opacity: 0;
+    transform: translateX(-100%); /* Desplazar hacia la izquierda para la imagen anterior */
+}
+
+.carrusel-gameplay-slide.active.next {
+    opacity: 1; /* Hacer visible la próxima imagen cuando es activa */
+    transform: translateX(0); /* Volver a la posición original */
+}
+
+.carrusel-gameplay-slide.active.prev {
+    opacity: 1; /* Hacer visible la imagen anterior cuando es activa */
+    transform: translateX(0); /* Volver a la posición original */
 }
 
 .carrusel-gameplay-slide img {
     width: 100%;
-    height: 100%; 
-    object-fit: cover; 
-    display: block;
-    transition: opacity 0.5s ease-in-out;
-  }
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
 
-.carrusel-gameplay-controls {
-    margin-top: 10px;
+.carrusel-gameplay-play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carrusel-gameplay-play-overlay img {
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+}
+
+.carrusel-gameplay-dots {
     display: flex;
     justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+    gap: 50px;
 }
 
 .carrusel-gameplay-dot {
-    height: 18px;
-    width: 18px;
-    margin: 0 8px;
+    height: 15px;
+    width: 15px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .carrusel-gameplay-dot.active {
-    background-color: #4CAF50;
+    background-color: #121E67; /* Color del punto activo */
 }
 
 .comentarios-container {
@@ -1612,10 +1692,6 @@ div a {
         width: 40px;
      }
  
-
-     .carrusel-container {
-        display: none;
-    } 
  
      .juegos-recomendados-desktop {
          display: flex;
@@ -1646,6 +1722,9 @@ div a {
      .juegos-otros {
          display: flex;
          flex-direction: column;
+         position: relative;
+         width: 100%; /* Ajusta según tu diseño */
+         overflow: hidden; 
      }
  
      .juegos-otros-top, .juegos-otros-bottom {
@@ -1653,8 +1732,7 @@ div a {
         flex-direction: row;
         padding-left: 40px;
         gap: 30px;
-        overflow-x: auto; /* Permite el scroll horizontal */
-        scroll-behavior: smooth; /* Desplazamiento suave */
+       
     }
     .titulo {
         padding-top: 25px;
