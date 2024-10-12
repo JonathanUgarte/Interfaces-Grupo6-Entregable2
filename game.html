@@ -24,27 +24,37 @@
                       <img id="lupa" src="./img/icon-search.svg" alt="">
               </div>
         </div>
-            <div class="icons">
-              <a href="#">
-                <img src="./img/icon-shop.svg" alt="Carrito">
-                <span class="contador-carrito">0</span> 
+        <div class="icons">
+          <a href="#">
+              <img src="./img/icon-shop.svg" alt="Carrito">
+              <span class="contador-carrito">0</span> 
+          </a>
+          <div class="profile-menu-container">
+              <a href="#" id="profile-icon">
+                  <img src="./img/icon-profile.svg" alt="Usuario">
               </a>
-                <a href="#"><img src="./img/icon-profile.svg" alt="Usuario"></a>
-            </div>
+              <div class="profile-dropdown" id="profile-dropdown">
+                  <a href="#">Mi Perfil</a>
+                  <a href="#">Mis Juegos</a>
+                  <a href="#">Configuracion</a>
+                  <a href="./index.html">Cerrar Sesión</a>
+              </div>
+          </div>
+      </div>
 
         </div>
     </header>
     <nav class="nav" id="nav">
         <ul class="nav-list">
-            <li><a href=""><img src="./img/icon-home.svg" alt="">Inicio</a></li>
-            <li><a href=""><img src="./img/icon-speaker.svg" alt="">Nuevos</a></li>
+            <li><a href="./home.html"><img src="./img/icon-home.svg" alt="">Inicio</a></li>
+            <li><a href="./home.html#nuevos"><img src="./img/icon-speaker.svg" alt="">Nuevos</a></li>
             <li><a href=""><img src="./img/icon-flame.svg" alt="">De moda</a></li>
             <li><a href=""><img src="./img/icon-cards.svg" alt="">Cartas</a></li>
             <li><a href=""><img src="./img/icon-handle.svg" alt="">Carreras</a></li>
-            <li><a href=""><img src="./img/icon-fight.svg" alt="">Lucha</a></li>
+            <li><a href="./home.html#luchas"><img src="./img/icon-fight.svg" alt="">Lucha</a></li>
             <li><a href=""><img src="./img/icon-football.svg" alt="">Futbol</a></li>
             <li><a href=""><img src="./img/icon-puzzle.svg" alt="">Puzles</a></li>
-            <li><a href=""><img src="./img/icon-shooter.svg" alt="">Disparo</a></li>
+            <li><a href="./home.html#shooters"><img src="./img/icon-shooter.svg" alt="">Disparo</a></li>
             <li><a href=""><img src="./img/icon-tactics.svg" alt="">Tecnicas</a></li>
         </ul>
   </nav>
@@ -374,7 +384,7 @@
     <footer class="footer-container">
                 <div class="acerca-epic-play">
                     <h2>Acerca de Epic Play</h2>
-                    <p>Ofrecemos una amplia selección de juegos de alta calidad en diversas categorías, desde <a href="" id="#accion">accion</a> ,<a href="" id="luchas">luchas</a> ,<a href="" id="#shooters">shooters</a> hasta rompecabezas, para garantizar que siempre encuentres algo que te encante. Nuestra plataforma está diseñada para jugadores de todos los niveles, proporcionando entretenimiento accesible y gratuito. Con actualizaciones constantes, siempre tendrás <a href="" id="juegos-nuevos">nuevos juegos</a> para descubrir y disfrutar. Además, puedes competir con amigos y comparar puntuaciones para ver quién es el mejor. Nos enorgullece ofrecer una experiencia de juego sin barreras, donde solo necesitas ganas de divertirte. Gracias por elegirnos como tu sitio favorito para minijuegos; estamos aquí para asegurarnos de que tengas una experiencia de juego inigualable. ¡Prepárate para sumergirte en horas de entretenimiento sin fin!</p>
+                    <p>Ofrecemos una amplia selección de juegos de alta calidad en diversas categorías, desde <a href="" id="#accion">accion</a> ,<a href="./home.html#luchas">luchas</a> ,<a href="./home.html#shooters">shooters</a> hasta rompecabezas, para garantizar que siempre encuentres algo que te encante. Nuestra plataforma está diseñada para jugadores de todos los niveles, proporcionando entretenimiento accesible y gratuito. Con actualizaciones constantes, siempre tendrás <a href="./home.html#nuevos" id="juegos-nuevos">nuevos juegos</a> para descubrir y disfrutar. Además, puedes competir con amigos y comparar puntuaciones para ver quién es el mejor. Nos enorgullece ofrecer una experiencia de juego sin barreras, donde solo necesitas ganas de divertirte. Gracias por elegirnos como tu sitio favorito para minijuegos; estamos aquí para asegurarnos de que tengas una experiencia de juego inigualable. ¡Prepárate para sumergirte en horas de entretenimiento sin fin!</p>
                 </div>
                 <div class="footer-info">
                         <div class="footer-contactos">
@@ -401,6 +411,7 @@
     <script src="./js/gameplay.carrusel.js"></script>
     <script src="./js/carrito-contador.js"></script>
     <script src="./js/gif-controles.js"></script>
+    <script src="./js/perfil.js"></script>
 
 </body>
 </html>
