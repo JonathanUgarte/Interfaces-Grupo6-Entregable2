@@ -7,18 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Registro</title>
 </head>
-<body>
-    
+<body> 
     <section class="background-color-login">
         <section class="container-login-full">
             <div class="Logo">
                 <img class="Image24" src="./img/epicplay-register.png" alt="Logo de la página">
             </div>
-            <div id="separator-line">
-            </div>
-            <div class="container-register">   
+            <div id="separator-line"></div>
+            <div class="container-register">    
                 <div class="container-form">
                     <span class="ini-session">Registrarse</span>
                     <form class="form-principal" action="">
@@ -40,11 +38,11 @@
                         <div class="captcha-robot-class">
                             <img src="img/captcha-robot.png" alt="" srcset="">
                         </div>
-    
                         <div class="conditions-accept">
-                            <input class="checkbox" type="checkbox">
+                            <input class="checkbox" type="checkbox" id="termsCheckbox">
                             <span class="acept-terms-text">Acepto los terminos y condiciones</span>
                         </div>
+                        <button type="button" class="register-btn" id="register-btn">Registrarme</button>
                         <div class="change">
                             <span class="no-account">Ya tienes cuenta?</span>
                             <a class="register-now" id="register-now" href="index.html">Iniciar sesion</a>
@@ -53,6 +51,18 @@
                 </div>
             </div>
         </section>
-    </section>
+
+        <!-- Pantalla de carga -->
+        <div id="loading-screen" class="loading-screen hidden">
+            <div class="loading-content">
+                <span id="loading-percentage">0%</span>
+            </div>
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div id="successMessage" class="success-message hidden">Registro finalizado correctamente!</div>
+    </section>  
+
+    <script src="./js/register-succesfull.js"></script> 
 </body>
 </html>

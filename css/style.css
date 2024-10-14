@@ -6,17 +6,17 @@
   }
 
 
-.slider {  
-    transition: transform 0.5s ease-in-out; /* Transición en el slider */
-  }
-  
-  .slider.inclinando { 
-    transform: perspective(300px) rotateY(15deg); 
-  }
-body {
-    font-family: "Outfit", sans-serif;
-    background-color: #121E67;
-}
+  body {
+      font-family: "Outfit", sans-serif;
+      background-color: #121E67;
+    }
+    .slider {  
+        transition: transform 0.5s ease-in-out; /* Transición en el slider */
+      }
+      
+      .slider.inclinando { 
+        transform: perspective(300px) rotateY(15deg); 
+      }
 /* REGISTER LOADING*/
 
 #loading-screen {
@@ -75,12 +75,12 @@ body {
     padding-top: 6.295907660020986vh;
     background-color: #4554B1;
     width: 27.282266526757606vh;
-    height: 81.84679958027283vh;
+    height: 88.84679958027283vh;
     position: fixed; /* Fija el menú en su posición */
     left: -27.282266526757606vh; /* Posición inicial fuera de la vista */
     top: 0;
     transition: left 0.10s ease; /* Añade una animación para el deslizamiento */
-    overflow-y: auto; /* Permite el scroll solo dentro del menú */
+    overflow-y: hidden; /* Permite el scroll solo dentro del menú */
     z-index: 10; 
 }
 
@@ -101,16 +101,20 @@ body {
   }
 .nav-list a {
     gap: 5px;
-    font-size: x-large;
+    font-size: small;
     padding-left: 2.0986358866736623vh;
     padding-right: 6.295907660020986vh;
     color: #FFF;
     display: flex;
-   
     align-items: center; 
     text-align: left; 
     color: #ffffff;
     text-decoration: none;
+}
+
+.nav-list a img {
+    height: 15px;
+    width: 15px;
 }
 
 .container {
@@ -163,6 +167,41 @@ body {
     height: 3.147953830010493vh;
 }
 
+/* Contenedor del menú */
+.profile-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo del menú desplegable */
+.profile-dropdown {
+    display: none;
+    position: fixed;
+    top: 55px; /* Ajusta según la altura que quieras */
+    right: 0;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    background-color:#4554B1;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 150px;
+}
+
+/* Estilos de los enlaces dentro del menú */
+.profile-dropdown a {
+    font-size: small;
+    display: block;
+    padding: 8px 12px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+
+.profile-dropdown a:hover {
+    background-color: #1629A1;
+    opacity: 0.5;
+}
+
 
 .search-container {
     display: none;
@@ -182,17 +221,20 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 491px;
+    height: 705px;
     background-image: url(/img/fondo-juegos-recomendados.png);
 }
 
 .juegos-recomendados {
     display: flex;
     flex-direction: column;
-    height: 320px;
+    height: 500px;
     width: 100%;
     overflow: hidden;
     background-color: #4554B1;
+}
+.juego-main {
+    padding-left: 30px;
 }
 
 .titulo {
@@ -200,44 +242,10 @@ body {
     width: 55.08vh;
     font-weight: 400;
     color: #FFF;
-    padding-top: 16px;
+    padding-top: 6px;
     padding-left: 13px;
+
 }
-
-
-
-.carrusel-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    padding-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Oculta el contenido que sobresale */
-}
-
-.carousel {
-    position: relative;
-    width: 310px; /* Ancho exacto de una tarjeta */
-    height: 200px;
-    overflow: hidden; /* Asegura que no se vea el siguiente ítem */
-    border-radius: 10px;
-}
-
-.slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    /* No necesita overflow en el slider ya que se maneja en el contenedor */
-}
-
-.item {
-    min-width: 310px;
-    height: 200px;
-    margin-right: 10px; /* Espacio entre ítems si lo necesitas */
-}
-
 
   
   input[type="radio"] {
@@ -330,7 +338,8 @@ body {
   }
 
   .juegos-recomendados-desktop {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Hovers carrusel */
@@ -728,68 +737,78 @@ body {
     display: flex;
     flex-direction: row;
 }
+.gif-controles img {
+    height: 160px;
+    width: 200px;
+}
 
 .controles {
     text-align: justify;
     color: #FFF;
     width: 100%;
 }
-
-.gameplay-container {
+    /*GAMEPLAY CARRUSEL */
+.carrusel-gameplay-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.carrusel-gameplay-container {
+.carrusel-gameplay-content {
     position: relative;
     width: 600px;
     height: 300px;
     overflow: hidden;
-    border-radius: 20px;
-}
-
-.carrusel-gameplay {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    border-radius: 15px;
 }
 
 .carrusel-gameplay-slide {
-    min-width: 100%;
-    height: 100%;
-  
-}
-
-.carrusel-gameplay-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones para opacidad y movimiento */
 }
 
-.carrusel-gameplay-controls {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+.carrusel-gameplay-slide.active {
+    opacity: 1; /* Totalmente visible */
+    transform: translateX(0); /* Se mueve a su lugar */
+}
+
+.carrusel-gameplay-slide.exit {
+    opacity: 0; /* Se vuelve invisible */
+    transform: translateX(-100%); /* Se mueve fuera de la pantalla a la izquierda */
+}
+
+.carrusel-gameplay-dots {
     display: flex;
     justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+    gap: 50px;
 }
 
 .carrusel-gameplay-dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
+    height: 15px;
+    width: 15px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .carrusel-gameplay-dot.active {
-    background-color: #4CAF50;
+    background-color: #121E67; /* Color del punto activo */
 }
 
+/*COMENTARIOS */
 .comentarios-container {
     border-radius: 20px;
     height: 250px;
@@ -899,7 +918,7 @@ body {
   .puntuacion-container label:hover ~ label {
     color: #FFD700; /* Color de estrellas al pasar el cursor */
   }
-
+  /*CARDS JUEGOS */
   .game-card-container {
     border-radius: 30px;
     background-color: #1629A1;
@@ -1057,12 +1076,25 @@ padding-left: 13px;
     overflow: hidden; 
 }
 
+.carrusel-juegos-recomendados {
+    padding-top: 13px;
+    padding-left: 10px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Ajusta según tu diseño */
+    overflow: hidden; 
+}
+.juego-main {
+    padding-top: 10px;
+}
+
   .contenedor-carrusel {
     display: flex;
     overflow-x: auto; /* Permitir desplazamiento horizontal */
     scroll-behavior: smooth; /* Desplazamiento suave */
     gap: 10px; /* Espacio entre las tarjetas */
- 
     position: relative;
     
   
@@ -1090,7 +1122,7 @@ padding-left: 13px;
   
 
   .flecha-izquierda, .flecha-derecha {
-   
+    
     position: absolute;
     top: 50%; /* Centra verticalmente */
     transform: translateY(-50%); /* Ajuste para mantener centrado */
@@ -1102,8 +1134,9 @@ padding-left: 13px;
 }
 
 .flecha-derecha img {
-    border:20px
+    padding-right:15px;
 }
+
 .flecha-izquierda {
    
     left: 0;
@@ -1111,13 +1144,21 @@ padding-left: 13px;
 }
 
 .flecha-derecha {
+ 
     right: 0;
     background-color: transparent; /* Fondo transparente */
 
     }
-    .flecha-izquierda img, .flecha-derecha img {
-        width: 50px; /* Ajusta según el tamaño de tu imagen */
-        height: 90px; 
+    .flecha-izquierda img {
+        padding-left: 15px;
+    }
+     .flecha-derecha img {
+        width: 60px; /* Ajusta según el tamaño de tu imagen */
+        height: 65px; 
+    }
+    .flecha-izquierda img {
+         width: 50px; /* Ajusta según el tamaño de tu imagen */
+        height: 90px;
     }
 
     .flecha-izquierda, .flecha-derecha {
@@ -1141,6 +1182,56 @@ padding-left: 13px;
 }
 
 /* REGISTER */ 
+.register-btn {
+    display: none; 
+    width: 250px;
+    height: 25px;
+    background-color: #237C75; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px; 
+    border: none;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+#loading-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Estilo para el porcentaje/mensaje de éxito */
+#loading-percentage {
+    font-size: 40px;
+    color: #237C75;
+}
+
+/* Mensaje de éxito: oculto por defecto */
+#successMessage {
+    display: none;
+    color: #237C75; /* Color verde personalizado */
+    font-size: 40px;
+    text-align: center;
+}
+
+.loading-content {
+    text-align: center;
+}
+
 
 .container-login-full {
     height: 500px;
@@ -1250,6 +1341,25 @@ padding-left: 13px;
     cursor: pointer;
 }
 
+.register-btn {
+    display: none; 
+    width: 250px;
+    height: 25px;
+    background-color: #237C75; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-top: 4px;
+}
+.register-btn:hover{
+    background-color: #2A9D8F;
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+}
 #register-now:hover{
     background-color: #2A9D8F;
     transition: 0.5s ease-in-out;
@@ -1289,11 +1399,12 @@ padding-left: 13px;
     background-color: #ffffff;
 }
 
-#google:hover{
-    background-color: #81C8BC;
+#google:hover {
+    background-color: #f2f2f2;
+
     transition: 0.5s ease-in-out;
     scale: 1.05;
-}
+  }
 
 #facebook{
     margin-top: 5px;
@@ -1534,223 +1645,43 @@ div a {
      
  
      nav { 
-         /* Eliminamos flex-grow para que no ocupe espacio extra */
+      
          flex-grow: 0; 
          display: flex;
-         justify-content: flex-start; /* Alineamos el logo al inicio junto al menú */
+         justify-content: flex-start; 
+     }
+
+     .nav-list a {
+        font-size: x-large;
+     }
+     .nav-list a img {
+        height: 40px;
+        width: 40px;
      }
  
-
-     .carrusel-container {
-        display: none;
-    } 
-     /* ... el resto del media query se mantiene igual ... */
  
-    /*ANIMACION CARGA DE LA OTRA PAGINA */
-    
-    /* ANIMACION LOADING 
-
-.container-loading{
-    height: 400px;
-    width: 350px;
-    background-color: rgb(246, 246, 246, .1);
-    border-radius: 25px;    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-}
-
-.lds-roller {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 45px;
-    margin-top: 120px;
-}
-.lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 40px 40px;
-}
-.lds-roller div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #CB8AD5;
-    margin: -4px 0 0 -4px;
-}
-.lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-}
-.lds-roller div:nth-child(1):after {
-    top: 63px;
-    left: 63px;
-}
-.lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-}
-.lds-roller div:nth-child(2):after {
-    top: 68px;
-    left: 56px;
-}
-.lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-}
-.lds-roller div:nth-child(3):after {
-    top: 71px;
-    left: 48px;
-}
-.lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-}
-.lds-roller div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-}
-.lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-}
-.lds-roller div:nth-child(5):after {
-    top: 71px;
-    left: 32px;
-}
-.lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-}
-.lds-roller div:nth-child(6):after {
-    top: 68px;
-    left: 24px;
-}
-.lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-}
-.lds-roller div:nth-child(7):after {
-    top: 63px;
-    left: 17px;
-}
-.lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-}
-.lds-roller div:nth-child(8):after {
-    top: 56px;
-    left: 12px;
-}
-@keyframes lds-roller {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-  */
-/*ANIMACION BARRA DE CARGA 
-
-#container-barra {
-    width: 80%;
-    height: 20px;
-    margin: 0 auto;
-    border-radius: 25px;
-    box-shadow: 0px 0px 90px 1px rgba(255,255,255,1);
-}
-
-#barra {
-    width: 0;
-    height: 100%;
-    background: #CB8AD5;
-    border-radius: 25px;
-}
-
-#texto-barra {
-    font-size: 15px;
-    font-weight: bold;
-    width: 280px;
-    height: 100%;
-    text-align: center;
-    color: #000000;
-    mix-blend-mode: multiply;
-}
-
-#texto-barra:after {
-    content: '0%';
-}
-
-@keyframes progreso {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-@keyframes porcentaje {
-    0% {
-        content: '0%';
-    }
-    25% {
-        content: '25%';
-    }
-    65% {
-        content: '50%';
-    }
-    75% {
-        content: '75%';
-    }
-    100% {
-        content: '100%';
-    }
-}
-
-#barra {
-    animation: progreso 5s linear;
-}
-
-#texto-barra:after {
-    animation: porcentaje 5s linear;
-}
-
-  ANIMACION CARGA DE LA OTRA PAGINA FIN*/
-
-     /*JUEGOS RECOMENDADOS DESKTOP */
- 
-
-     /*ANIMACION CARRUSEL
-
-     
-     
-     .game-card{
-        transition: transform 0.3s ease-in-out;
-      }
-      
-      .contenedor-carrusel.skewder .game-card {
-        transform: skewX(-10deg);
-      }
-      
-      .contenedor-carrusel.skewizq .game-card  {
-        transform: skewX(10deg);
-      }
-      
-      ::-webkit-scrollbar{
-        display: none;
-      }
-      ANIMACION CARRUSEL FIN*/
-
      .juegos-recomendados-desktop {
          display: flex;
+         flex-direction: row;
          padding: 15px;
          padding-top: 35px;
          width: 100%;
          height: 100%;
+         align-items: center;
      }
- 
+    
+
      .juegos-recomendados {
          padding-left: 10px;
+         height: 320px;
      }
+     .juego-recomendados-container{
+        height: 491px;
+     }
+
+     .juego-main {
+        padding:0;
+    }
  
      .titulo {
          font-size: 30px;
@@ -1758,14 +1689,22 @@ div a {
      .juegos-otros {
          display: flex;
          flex-direction: column;
+         position: relative;
+         width: 100%; /* Ajusta según tu diseño */
+         overflow: hidden; 
      }
  
-     .juegos-otros-top , .juegos-otros-bottom {
-         display: flex;
-         flex-direction: row;
-         padding-left: 40px;
-         gap: 30px;
-     }
+     .juegos-otros-top, .juegos-otros-bottom {
+        display: flex;
+        flex-direction: row;
+        padding-left: 40px;
+        gap: 30px;
+       
+    }
+    .titulo {
+        padding-top: 25px;
+    }
+
      
      /* JUEGOS POR CATEGORIA */
 

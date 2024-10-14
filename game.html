@@ -24,27 +24,37 @@
                       <img id="lupa" src="./img/icon-search.svg" alt="">
               </div>
         </div>
-            <div class="icons">
-              <a href="#">
-                <img src="./img/icon-shop.svg" alt="Carrito">
-                <span class="contador-carrito">0</span> 
+        <div class="icons">
+          <a href="#">
+              <img src="./img/icon-shop.svg" alt="Carrito">
+              <span class="contador-carrito">0</span> 
+          </a>
+          <div class="profile-menu-container">
+              <a href="#" id="profile-icon">
+                  <img src="./img/icon-profile.svg" alt="Usuario">
               </a>
-                <a href="#"><img src="./img/icon-profile.svg" alt="Usuario"></a>
-            </div>
+              <div class="profile-dropdown" id="profile-dropdown">
+                  <a href="#">Mi Perfil</a>
+                  <a href="#">Mis Juegos</a>
+                  <a href="#">Configuracion</a>
+                  <a href="./index.html">Cerrar Sesión</a>
+              </div>
+          </div>
+      </div>
 
         </div>
     </header>
     <nav class="nav" id="nav">
         <ul class="nav-list">
-            <li><a href=""><img src="./img/icon-home.svg" alt="">Inicio</a></li>
-            <li><a href=""><img src="./img/icon-speaker.svg" alt="">Nuevos</a></li>
+            <li><a href="./home.html"><img src="./img/icon-home.svg" alt="">Inicio</a></li>
+            <li><a href="./home.html#nuevos"><img src="./img/icon-speaker.svg" alt="">Nuevos</a></li>
             <li><a href=""><img src="./img/icon-flame.svg" alt="">De moda</a></li>
             <li><a href=""><img src="./img/icon-cards.svg" alt="">Cartas</a></li>
             <li><a href=""><img src="./img/icon-handle.svg" alt="">Carreras</a></li>
-            <li><a href=""><img src="./img/icon-fight.svg" alt="">Lucha</a></li>
+            <li><a href="./home.html#luchas"><img src="./img/icon-fight.svg" alt="">Lucha</a></li>
             <li><a href=""><img src="./img/icon-football.svg" alt="">Futbol</a></li>
             <li><a href=""><img src="./img/icon-puzzle.svg" alt="">Puzles</a></li>
-            <li><a href=""><img src="./img/icon-shooter.svg" alt="">Disparo</a></li>
+            <li><a href="./home.html#shooters"><img src="./img/icon-shooter.svg" alt="">Disparo</a></li>
             <li><a href=""><img src="./img/icon-tactics.svg" alt="">Tecnicas</a></li>
         </ul>
   </nav>
@@ -119,30 +129,34 @@
                             <p>Para comenzar a jugar debes seleccionar la ficha que va a tener cada jugador y el modo de juego que mas te guste! Una vez iniciado el juego uno de los jugadores debera empezar arrastrando su ficha con el mouse por la parte superior (gris) del tablero para posicionar en la columna que desea lanzarla y la ficha caerá. No olvides que solo puedes mover tus fichas cuando sea tu turno! Apurate que el tiempo se termina!</p>
                         </div>
                         <div class="gif-controles">
-                            <img src="./img/gif-controles.png" alt="gif-controles">
+                            <img id="myGif" src="./img/tablero_4_en_linea_fichas.gif" alt="gif-controles">
                         </div>
             </section>
-            <h2>Gameplay</h2>
-            <section class="gameplay-container">
-                <div class="carrusel-gameplay-container">
-                    <div class="carrusel-gameplay">
-                        <div class="carrusel-gameplay-slide">
-                            <img src="./img/gameplay1.jpg" alt="Slide 1">
-                        </div>
-                        <div class="carrusel-gameplay-slide">
-                            <img src="image2.png" alt="Slide 2">
-                        </div>
-                        <div class="carrusel-gameplay-slide">
-                            <img src="image3.png" alt="Slide 3">
-                        </div>
-                    </div>
-                    <div class="carrusel-gameplay-controls">
-                        <span class="carrusel-gameplay-dot" onclick="currentSlide(1)"></span>
-                        <span class="carrusel-gameplay-dot" onclick="currentSlide(2)"></span>
-                        <span class="carrusel-gameplay-dot" onclick="currentSlide(3)"></span>
-                    </div>
-                </div>
-            </section>
+            <h2>Gameplays</h2>
+            <section class="carrusel-gameplay-container">
+              <div class="carrusel-gameplay-content">
+                  <div class="carrusel-gameplay-slide active">
+                    <iframe width="600" height="300" src="https://www.youtube.com/embed/pyV76e86DNw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+                  </div>
+                  <div class="carrusel-gameplay-slide">
+                    <iframe width="600" height="300" src="https://www.youtube.com/embed/KuxORj9aJOw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+            
+                  </div>
+                  <div class="carrusel-gameplay-slide">
+                    <iframe width="600" height="300" src="https://www.youtube.com/embed/3R1Cx6uGjMw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+              <div class="carrusel-gameplay-dots">
+                  <span class="carrusel-gameplay-dot" onclick="currentSlide(1)"></span>
+                  <span class="carrusel-gameplay-dot" onclick="currentSlide(2)"></span>
+                  <span class="carrusel-gameplay-dot" onclick="currentSlide(3)"></span>
+              </div>
+          </section>
+          
+          
             <h2>Comentarios<img class="icon-comments" src="./img/icon-comments.svg" alt="icon-comments"></h2>
             <section class="comentarios-container">
                     <div class="comentarios-profile">
@@ -370,7 +384,7 @@
     <footer class="footer-container">
                 <div class="acerca-epic-play">
                     <h2>Acerca de Epic Play</h2>
-                    <p>Ofrecemos una amplia selección de juegos de alta calidad en diversas categorías, desde <a href="" id="#accion">accion</a> ,<a href="" id="luchas">luchas</a> ,<a href="" id="#shooters">shooters</a> hasta rompecabezas, para garantizar que siempre encuentres algo que te encante. Nuestra plataforma está diseñada para jugadores de todos los niveles, proporcionando entretenimiento accesible y gratuito. Con actualizaciones constantes, siempre tendrás <a href="" id="juegos-nuevos">nuevos juegos</a> para descubrir y disfrutar. Además, puedes competir con amigos y comparar puntuaciones para ver quién es el mejor. Nos enorgullece ofrecer una experiencia de juego sin barreras, donde solo necesitas ganas de divertirte. Gracias por elegirnos como tu sitio favorito para minijuegos; estamos aquí para asegurarnos de que tengas una experiencia de juego inigualable. ¡Prepárate para sumergirte en horas de entretenimiento sin fin!</p>
+                    <p>Ofrecemos una amplia selección de juegos de alta calidad en diversas categorías, desde <a href="" id="#accion">accion</a> ,<a href="./home.html#luchas">luchas</a> ,<a href="./home.html#shooters">shooters</a> hasta rompecabezas, para garantizar que siempre encuentres algo que te encante. Nuestra plataforma está diseñada para jugadores de todos los niveles, proporcionando entretenimiento accesible y gratuito. Con actualizaciones constantes, siempre tendrás <a href="./home.html#nuevos" id="juegos-nuevos">nuevos juegos</a> para descubrir y disfrutar. Además, puedes competir con amigos y comparar puntuaciones para ver quién es el mejor. Nos enorgullece ofrecer una experiencia de juego sin barreras, donde solo necesitas ganas de divertirte. Gracias por elegirnos como tu sitio favorito para minijuegos; estamos aquí para asegurarnos de que tengas una experiencia de juego inigualable. ¡Prepárate para sumergirte en horas de entretenimiento sin fin!</p>
                 </div>
                 <div class="footer-info">
                   <div class="footer-contactos">
@@ -396,6 +410,8 @@
     <script src="./js/compartir.js"></script>
     <script src="./js/gameplay.carrusel.js"></script>
     <script src="./js/carrito-contador.js"></script>
-    <script src="./js/largo-nombre.js"></script>
+    <script src="./js/gif-controles.js"></script>
+    <script src="./js/perfil.js"></script>
+
 </body>
 </html>
