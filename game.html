@@ -82,12 +82,24 @@
                 </div>
 
                 <div id="container-formato-juego">           
-                  <div><h2>4 EN LINEA</h2><img id="4" class="formato-juego selected" src="img/4-en-linea.png" alt=""></div>
-                  <div><h2>5 EN LINEA</h2><img id="5" class="formato-juego" src="img/5-en-linea.png" alt=""></div>
-                  <div><h2>6 EN LINEA</h2><img id="6" class="formato-juego" src="img/6-en-linea.png" alt=""></div>
-                  <div><h2>7 EN LINEA</h2><img id="7" class="formato-juego" src="img/7-en-linea.png" alt=""></div>
+                  <div><h2>4 EN LINEA</h2><img id="4" class="formato-juego selected" src="img/img-enlinea-1.png" alt=""></div>
+                  <div><h2>5 EN LINEA</h2><img id="5" class="formato-juego" src="img/img-enlinea-2.png" alt=""></div>
+                  <div><h2>6 EN LINEA</h2><img id="6" class="formato-juego" src="img/img-enlinea-3.png" alt=""></div>
+                  <div><h2>7 EN LINEA</h2><img id="7" class="formato-juego" src="img/img-enlinea-4.png" alt=""></div>
 
+                </div>
+
+                <div id="container-btn-jugar">
+                  <div id="btn-jugar">
+                      <img src="img/play.svg" alt="">
+                      <h1>JUGAR</h1>
+                  </div>
               </div>
+
+              <button id="btn-menu" class="btn-menu esconder">Menú</button>
+              <canvas id="myCanvas" width="900" height="520" style="border: 1px solid grey;" class="esconder"></canvas>
+              <img id="fondo-canvas" style="height: 600px; width: 900px; display: none;" src="img/fondo-temp.png"alt="">
+
                 <div class="btn-juego"><button class="btn-jugar-juego">Jugar</button></div>
             </div>
             </div>
@@ -421,5 +433,12 @@
     <script src="./js/gif-controles.js"></script>
     <script src="./js/perfil.js"></script>
     <script src="./js/largo-nombre.js"></script>
+    <script src="./js/game/Board.js"></script>
+    <script src="./js/game/Circle.js"></script>
+    <script src="./js/game/Ficha.js"></script>
+    <script src="./js/game/Slot.js"></script>
+    <script src="./js/game/Board.js"></script>
+    <script src="./js/game/main.js"></script>
+    <script src="./js/game/popUp.js"></script>
 </body>
 </html>
