@@ -51,11 +51,11 @@ let timer = document.querySelector("#temporizador");
 
 document.getElementById("btn-jugar").addEventListener("click", ()=>{
 
-    setTimeout(a, 1000);
+    setTimeout(a, 500);
     function a(){
         canvas.classList.remove("esconder");
         containerJuego.classList.add('esconder');
-        containerJuego.classList.remove("container-juego")
+        containerJuego.classList.remove("juego-container")
         primerPantalla.classList.add('esconder');
         btnMenu.classList.remove("esconder");
         timer.classList.remove('esconder');
