@@ -66,12 +66,12 @@ document.getElementById("btn-jugar").addEventListener("click", ()=>{
 })
 
 //CAMBIO DE CANVAS A DIV
-let btnMenu = document.getElementById("btn-menu");
+let btnMenu = document.getElementById("btn-menu-juego");
 
 btnMenu.addEventListener("click", () => {
     canvas.classList.add("esconder");
     containerJuego.classList.remove("esconder");
-    containerJuego.classList.add("container-juego");
+    containerJuego.classList.add("juego-container");
     primerPantalla.classList.remove("esconder");
     timer.classList.add('esconder');
     btnMenu.classList.add("esconder");
@@ -151,7 +151,7 @@ function inicializeGame() {
         posicionPonerFichas.pop();
     }
 
-    var image = document.getElementById("travellers-1");
+    var image = document.getElementById("robot-1");
 
     board = new Board(tablero, boardx0,boardy0,boardW,boardH,"blue",ctx, modoDeJuego, image);
 
@@ -257,9 +257,9 @@ function ponerFicha(e) {
                         //checkea si hay ganador
                         if (board.hayGanador(fichaClicked, fichaAgregada.fila, columna)){ 
                             if (fichaClicked.getPlayer() == 1) {
-                                alert ("¡Han ganado los Viajeros!");
+                                alert ("¡Han ganado los Robots!");
                             } else {
-                                alert("¡Han ganado los Invasores!");
+                                alert("¡Han ganado los Aliens!");
                             }
                         }
                         //toma la posicion la ficha en el arreglo de fichas generales
