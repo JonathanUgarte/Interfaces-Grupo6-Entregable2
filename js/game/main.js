@@ -151,7 +151,7 @@ function inicializeGame() {
         posicionPonerFichas.pop();
     }
 
-    var image = document.getElementById("travellers-1");
+    var image = document.getElementById("robot-1");
 
     board = new Board(tablero, boardx0,boardy0,boardW,boardH,"blue",ctx, modoDeJuego, image);
 
