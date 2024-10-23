@@ -71,12 +71,12 @@
                             <h2>Robots</h2>
                             <img id="robot-1" class="jugadores robots selected"  src="./img/Ellipse 17.png" alt="">
                             <img id="robot-2" class="jugadores robots"  src="./img/Ellipse 17 (1).png" alt="">
-                            <img id="robot-3" class="jugadores robots" src="./img/icon-gamer4.png" alt="">
+                            <img id="robot-3" class="jugadores robots" src="./img/icon-juego1.svg" alt="">
                         </div>
                         <div class="aliens">
                             <h2>Aliens</h2>
                             <img id="alien-1" class="jugadores aliens selected" src="./img/Ellipse 12.png" alt="">
-                            <img id="alien-2" class="jugadores aliens"src="./img/Ellipse 11.png" alt="">
+                            <img id="alien-2" class="jugadores aliens"src="../img/icon-juego2.svg" alt="">
                             <img id="alien-3" class="jugadores aliens" src="./img/Ellipse 13.png" alt="">
                         </div>
                 </div>
@@ -96,11 +96,15 @@
                   </div>
               </div>
 
-              <button id="btn-menu" class="btn-menu esconder">Menú</button>
+              <div id="temporizador" class="esconder">
+                <span id="tiempo-restante">0</span>
+            </div>
+
+              <button id="btn-menu-juego" class="btn-menu esconder">Menú</button>
               <canvas id="myCanvas" width="900" height="520" style="border: 1px solid grey;" class="esconder"></canvas>
               <img id="fondo-canvas" style="height: 600px; width: 900px; display: none;" src="img/fondo-temp.png"alt="">
 
-                <div class="btn-juego"><button class="btn-jugar-juego">Jugar</button></div>
+              
             </div>
             </div>
             <section class="intrucciones-container">

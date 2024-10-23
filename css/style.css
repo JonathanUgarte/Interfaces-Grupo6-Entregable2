@@ -502,6 +502,7 @@
     padding-left: 220px;
     padding-bottom: 200px;
 }
+/* CSS JUEGO 4 EN LINEA */
 
 .juego{
     margin-bottom: 50px;
@@ -514,6 +515,23 @@
      border-radius: 20px;
     
 }
+.esconder {
+    display: none;
+}
+.formato-juego.selected, .jugadores.selected:hover, .formato-juego.selected:hover {
+    border: 3px solid white;
+}
+
+.robots.selected {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100px;
+}
+
+.aliens.selected {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100px;
+}
+
 #container-formato-juego{
     display: flex;
     justify-content: center ;
@@ -532,6 +550,81 @@
     height: 135px;
     border-radius: 20px;
 }
+
+#container-btn-jugar{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#btn-jugar{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 300px;
+    background-color: #1B1B1B;
+    border-radius: 50px;
+    cursor: pointer;
+    padding-bottom: 20px;
+    
+}
+
+#btn-jugar:hover{
+    scale: 0.98;
+    background-color: #320bc0;
+    transition-duration: 0.5s;
+}
+
+
+#btn-jugar h1{
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+
+#temporizador{
+    margin-top: 30px;
+    margin-left: 750px;
+    position: absolute;
+    font-size: 20px;
+    background-color: #4f40d9;
+    border: none;
+    color: rgb(0, 0, 0);
+}
+
+#tiempo-restante{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    color: #000000;
+    background-color: #4f40d9;
+    border: 2px solid #4f40d9;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#btn-menu-juego {
+    margin-top: 20px;
+    margin-left: 50px;
+    height: 30px;
+    width: 80px;
+    position: absolute;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #4f40d9;
+    border: none;
+    color: rgb(0, 0, 0);
+}
+
+#btn-menu-juego:hover {
+    background-color: #320bc0;
+}
+
 
 .juego  h1 {
     padding-top: 23px;
@@ -560,19 +653,7 @@
     width: 81px;
 }
 
-.btn-jugar-juego {
-    border: none;
-    font-size: large;
-    font-family: "Outfit", sans-serif;
-    color: #FFF;
-    background-color:#4554B1;
-    height: 50px;
-    width: 304px;
-    border-radius: 10px;
-    position: relative;
-    top: 110px;
-}
-
+/* CSS DE INFO JUEGO */
 .intrucciones-container{
     padding: 30px;
     height: 1480px;

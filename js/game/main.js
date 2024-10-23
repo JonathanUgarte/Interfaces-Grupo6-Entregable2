@@ -3,25 +3,25 @@ const canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 
 //SELECCION DE PERSONAJES
-let travellers = document.querySelectorAll(".travellers");
-let invaders = document.querySelectorAll(".invaders");
+let robots = document.querySelectorAll(".robots");
+let aliens = document.querySelectorAll(".aliens");
 let jugadores = document.querySelectorAll(".jugadores");
 
-var imagenJugador1 = document.getElementById("travellers-1");
-var imagenJugador2 = document.getElementById("invaders-1");
+var imagenJugador1 = document.getElementById("robot-1");
+var imagenJugador2 = document.getElementById("alien-1");
 
 for(let jugador of jugadores) {
     jugador.addEventListener("click", () => {
-        if (jugador.classList.contains("travellers")) {
-            for(let traveller of travellers) {
-                traveller.classList.remove("selected");
+        if (jugador.classList.contains("robots")) {
+            for(let robot of robots) {
+                robot.classList.remove("selected");
             }
             jugador.classList.add("selected");
             imagenJugador1 = document.getElementById(jugador.id);
         }
-        if (jugador.classList.contains("invaders")) {
-            for(let invader of invaders) {
-                invader.classList.remove("selected");
+        if (jugador.classList.contains("aliens")) {
+            for(let alien of aliens) {
+                alien.classList.remove("selected");
             }
             jugador.classList.add("selected");
             imagenJugador2 = document.getElementById(jugador.id);
@@ -45,8 +45,8 @@ for(let formato of formatos) {
 
 // CAMBIO DE DIV A CANVAS
 
-let primerPantalla = document.querySelector("#primer-pantalla");
-let containerJuego = document.querySelector("#container-juego");
+let primerPantalla = document.querySelector(".juego");
+let containerJuego = document.querySelector(".juego-container");
 let timer = document.querySelector("#temporizador");
 
 document.getElementById("btn-jugar").addEventListener("click", ()=>{
@@ -60,8 +60,7 @@ document.getElementById("btn-jugar").addEventListener("click", ()=>{
         btnMenu.classList.remove("esconder");
         timer.classList.remove('esconder');
         minutos = 5;
-        segundos =0;
-        temporizador();
+        segundos =0;       temporizador();
         inicializeGame();
     }
 })
