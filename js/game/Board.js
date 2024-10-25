@@ -46,12 +46,20 @@ class Board {
     }
 
 
-    agregarFicha(columna, player) {
+    async agregarFicha(columna, player) {
         if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
             const ficha = new Ficha(this.posX+30+60*columna,this.posY+30+60*5,20,"",this.context, player, this.image);
             if (this.matriz[0][columna].getFicha().getPlayer() == 0) {
                 let fila = this.buscarFilaLibre(columna);
-                this.matriz[fila][columna].setFicha(ficha);
+                let i = 0;
+                this.matriz[i][columna].setFicha(ficha);
+                i++;
+                while (i <= fila){
+                    //eliminar anterior
+                    await new Promise(r => setTimeout(r, 300));
+                    this.matriz[i][columna].setFicha(ficha);
+                    i++;
+                }
                 return {
                     insertada: true,
                     fila: fila
