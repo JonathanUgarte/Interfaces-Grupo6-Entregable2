@@ -45,9 +45,37 @@ class Board {
         }
     }
 
+    /*animateFall(ctx, canvas, ficha, slot){
+        const dt = 0.2;
+        let t = 0;
+        let y = ficha.getHeight;
+        const y0 = y;
+        let x = ficha.getWidth;//DUDOSO EL GETWIDHT
+        const g = 10;
+        const yMax = slot.getHeight + 
+    }*/
 
-    async agregarFicha(columna, player) {
+        agregarFicha(columna, player) {
         if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
+            const ficha = new Ficha(this.posX+30+60*columna,this.posY+30+60*5,20,"",this.context, player, this.image);
+            if (this.matriz[0][columna].getFicha().getPlayer() == 0) {
+                let fila = this.buscarFilaLibre(columna);
+                this.matriz[fila][columna].setFicha(ficha);
+                return {
+                    insertada: true,
+                    fila: fila
+                };
+            }
+            else return {
+                insertada: false,
+                fila: -1
+            };
+        }
+    }
+    /*SABER LA COLUMNA HASTA QUE LUGAR, USO ANIMATIONFRAMES,  */
+
+    /*async agregarFicha(columna, player) {
+        if ((columna < this.modoDeJuego+3) && (p1layer == 1 || player == 2)) {
             const ficha = new Ficha(this.posX+30+60*columna,this.posY+30+60*5,20,"",this.context, player, this.image);
             if (this.matriz[0][columna].getFicha().getPlayer() == 0) {
                 let fila = this.buscarFilaLibre(columna);
@@ -56,8 +84,11 @@ class Board {
                 i++;
                 while (i <= fila){
                     //eliminar anterior
+                    if(i!=0)
+                        this.matriz[i-1][columna].setFicha(new Ficha(i-1, columna, 20, "white", this.context, 0, this.image));
                     await new Promise(r => setTimeout(r, 300));
                     this.matriz[i][columna].setFicha(ficha);
+                    
                     i++;
                 }
                 return {
@@ -70,7 +101,7 @@ class Board {
                 fila: -1
             };
         }
-    }
+    }*/
 
     buscarFilaLibre(columna) {
         let ultimaFilaLibre = 0;
