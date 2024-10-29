@@ -2,6 +2,7 @@ const canvas = document.getElementById("myCanvas");
 /** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext("2d");
 
+
 //SELECCION DE PERSONAJES
 let robots = document.querySelectorAll(".robots");
 let aliens = document.querySelectorAll(".aliens");
@@ -213,14 +214,13 @@ function repaint() {
 
     mostrarTurno(); // Mostrar el turno después de repintar
 }
-
 function mostrarTurno() {
     let ancho = 150, alto = 50;
     let x = (turnoJugador === 1) ? 50 : canvasW - ancho - 50;
     let y = 450;
 
     // Fondo del panel con bordes redondeados
-    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Purple"; // Rojo para Robots, Amarillo para Aliens
+    ctx.fillStyle = turnoJugador === 1 ? "Green" : "Blue"; // Rojo para Robots, Violeta para Aliens
     ctx.beginPath();
     ctx.roundRect(x, y, ancho, alto, 10);  // Bordes redondeados
     ctx.fill();
@@ -230,8 +230,8 @@ function mostrarTurno() {
     ctx.fillStyle = "white"; // Contraste
     ctx.textAlign = "center";
     ctx.fillText(turnoJugador === 1 ? "Turno: Robots" : "Turno: Aliens", x + ancho / 2, y + alto / 2 + 5);
+    
 }
-
 
 function getMousePos(event) {
     return {
@@ -266,6 +266,8 @@ function clickEnFicha(e) {
     }
     click = true;
 }
+
+
 function ponerFicha(e) {
     let m = getMousePos(e);
     if (fichaClicked != null) {
@@ -298,39 +300,46 @@ function ponerFicha(e) {
     click = false;
 }
 
+
 function animarCaida(ficha, filaDestino, columna) {
-    let posYInicial = ficha.getPosY(); 
-    let posYFinal = boardy0 + 30 + 50 * filaDestino;   // Calcula la posición final en el tablero
-    let distancia = posYFinal - posYInicial;
-    let tiempoAnimacion = 500; // Duración de la animación en milisegundos
+    const posYInicial = ficha.getPosY();
+    const posX = boardx0 + 25 + 50 * columna; // Ajusta la posición X para alinear con la columna
+    const posYFinal = boardy0 + 25 + 50 * filaDestino; // Calcula la posición final en Y
+
+    const distancia = posYFinal - posYInicial;
+    const tiempoAnimacion = 500; // Duración de la animación en milisegundos
     let inicioTiempo = null;
 
     function animacion(tiempoActual) {
         if (inicioTiempo === null) inicioTiempo = tiempoActual;
-        let tiempoTranscurrido = tiempoActual - inicioTiempo;
-        let progreso = Math.min(tiempoTranscurrido / tiempoAnimacion, 1); // Progreso de 0 a 1
+        const tiempoTranscurrido = tiempoActual - inicioTiempo;
+        const progreso = Math.min(tiempoTranscurrido / tiempoAnimacion, 1); // Progreso de 0 a 1
 
-        // Aplica una aceleración a la caída (puedes ajustar la curva)
-        let posicionY = posYInicial + (distancia * progreso * progreso); 
+        // Aceleración en la caída (ease-in efecto parabólico)
+        const posicionY = posYInicial + (distancia * Math.pow(progreso, 2));
         ficha.setPosY(posicionY);
+        ficha.setPosX(posX); // Asegura que la ficha esté alineada con la columna
 
-        repaint();
+        repaint(); // Redibuja la escena con la nueva posición
 
         if (progreso < 1) {
             requestAnimationFrame(animacion); // Continúa la animación
         } else {
-            // Al finalizar la animación, verifica ganador y muestra el turno
+            // Al finalizar la animación, verifica si hay un ganador y muestra el turno
             if (board.hayGanador(ficha, filaDestino, columna)) {
                 mostrarPopupVictoria(turnoJugador === 2 ? "¡Han ganado los Robots!" : "¡Han ganado los Aliens!");
             }
             mostrarTurno();
-            let p = fichas.indexOf(ficha);
-            fichas.splice(p, 1);
+
+            // Elimina la ficha del arreglo solo al final de la animación
+            const index = fichas.indexOf(ficha);
+            if (index !== -1) fichas.splice(index, 1);
         }
     }
 
     requestAnimationFrame(animacion); // Inicia la animación
 }
+
 function mostrarPopupVictoria(mensaje) {
     let popup = document.getElementById("victoria-popup");
 
