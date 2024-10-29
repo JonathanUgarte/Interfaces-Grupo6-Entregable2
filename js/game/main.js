@@ -10,17 +10,17 @@ let jugadores = document.querySelectorAll(".jugadores");
 var imagenJugador1 = document.getElementById("robot-1");
 var imagenJugador2 = document.getElementById("alien-1");
 
-for(let jugador of jugadores) {
+for (let jugador of jugadores) {
     jugador.addEventListener("click", () => {
         if (jugador.classList.contains("robots")) {
-            for(let robot of robots) {
+            for (let robot of robots) {
                 robot.classList.remove("selected");
             }
             jugador.classList.add("selected");
             imagenJugador1 = document.getElementById(jugador.id);
         }
         if (jugador.classList.contains("aliens")) {
-            for(let alien of aliens) {
+            for (let alien of aliens) {
                 alien.classList.remove("selected");
             }
             jugador.classList.add("selected");
@@ -33,9 +33,9 @@ for(let jugador of jugadores) {
 let formatos = document.querySelectorAll(".formato-juego");
 var modoDeJuego = 4;
 
-for(let formato of formatos) {
+for (let formato of formatos) {
     formato.addEventListener("click", () => {
-        for(let formato of formatos) {
+        for (let formato of formatos) {
             formato.classList.remove("selected");
         }
         formato.classList.add("selected");
@@ -49,10 +49,11 @@ let primerPantalla = document.querySelector(".juego");
 let containerJuego = document.querySelector(".juego-container");
 let timer = document.querySelector("#temporizador");
 
-document.getElementById("btn-jugar").addEventListener("click", ()=>{
+document.getElementById("btn-jugar").addEventListener("click", () => {
 
     setTimeout(a, 500);
-    function a(){
+
+    function a() {
         canvas.classList.remove("esconder");
         containerJuego.classList.add('esconder');
         containerJuego.classList.remove("juego-container")
@@ -60,18 +61,19 @@ document.getElementById("btn-jugar").addEventListener("click", ()=>{
         btnMenu.classList.remove("esconder");
         timer.classList.remove('esconder');
         minutos = 5;
-        segundos =0;       temporizador();
+        segundos = 0;
+        temporizador();
         inicializeGame();
     }
 })
 
 //CAMBIO DE CANVAS A DIV
-let btnMenu = document.getElementById("btn-menu-juego");
+let btnMenu = document.getElementById("btn-menu");
 
 btnMenu.addEventListener("click", () => {
     canvas.classList.add("esconder");
     containerJuego.classList.remove("esconder");
-    containerJuego.classList.add("juego-container");
+    containerJuego.classList.add("container-juego");
     primerPantalla.classList.remove("esconder");
     timer.classList.add('esconder');
     btnMenu.classList.add("esconder");
@@ -102,19 +104,20 @@ const fichasPuestas = [];
 const posicionPonerFichas = [];
 
 var board = null;
+let turnoJugador = null
 
 function inicializeGame() {
     //SETEO VARIABLES
-    cantFichasTotal = (modoDeJuego+3)*(modoDeJuego+2);
+    cantFichasTotal = (modoDeJuego + 3) * (modoDeJuego + 2);
+    turnoJugador = null;
+    boardW = (modoDeJuego + 3) * 50;
+    boardH = (modoDeJuego + 2) * 50;
 
-    boardW = (modoDeJuego+3)*50;
-    boardH = (modoDeJuego+2)*50;
+    boardx0 = canvasW / 2 - boardW / 2;
+    boardy0 = canvasH / 2 - boardH / 2 + 25;
 
-    boardx0 = canvasW/2 - boardW/2;
-    boardy0 = canvasH/2 - boardH/2 + 25;
-
-    filas = modoDeJuego+2;
-    columnas = modoDeJuego+3;
+    filas = modoDeJuego + 2;
+    columnas = modoDeJuego + 3;
 
     ultimaFichaPuesta = null;
     fichaClicked = null;
@@ -153,40 +156,44 @@ function inicializeGame() {
 
     var image = document.getElementById("robot-1");
 
-    board = new Board(tablero, boardx0,boardy0,boardW,boardH,"blue",ctx, modoDeJuego, image);
+    board = new Board(tablero, boardx0, boardy0, boardW, boardH, "blue", ctx, modoDeJuego, image);
 
     pintarFondo();
-    
+
     board.draw();
-    
+
     //pinta fichas jugador 1
 
     let fichaPosY = 505;
-    for (let i = 0; i < cantFichasTotal/2; i++) {
+    for (let i = 0; i < cantFichasTotal / 2; i++) {
         let fichaPosX = 30;
         fichaPosY = fichaPosY - 10;
         const ficha = new Ficha(fichaPosX, fichaPosY, 20, "red", ctx, 1, imagenJugador1);
         fichas.push(ficha);
         ficha.draw();
     }
-    
+
     //pinta fichas jugador 2
 
     fichaPosY = 505;
-    for (let i = 0; i < cantFichasTotal/2; i++) {
+    for (let i = 0; i < cantFichasTotal / 2; i++) {
         let fichaPosX = canvasW - 30;
         fichaPosY = fichaPosY - 10;
         const ficha = new Ficha(fichaPosX, fichaPosY, 20, "yellow", ctx, 2, imagenJugador2);
         fichas.push(ficha);
         ficha.draw();
     }
+
+    
 }
+
+
 
 canvas.addEventListener("mousedown", clickEnFicha);
 canvas.addEventListener("mouseup", ponerFicha);
 canvas.addEventListener("mousemove", moverFicha);
 
-function pintarFondo(){
+function pintarFondo() {
     let img = document.querySelector("#fondo-canvas")
     let imgFondo = ctx.createPattern(img, null);
     ctx.rect(0, 0, canvasW, canvasW);
@@ -195,18 +202,38 @@ function pintarFondo(){
 }
 
 function repaint() {
-    ctx.clearRect(0,0,canvasW,canvasH);
+    ctx.clearRect(0, 0, canvasW, canvasH);
     pintarFondo();
     board.redraw();
-    for(let i = 0; i < fichas.length; i++) {
+    for (let i = 0; i < fichas.length; i++) {
         if (fichas[i].getPlayer() == 1) fichas[i].setFill("red");
         else fichas[i].setFill("yellow");
         fichas[i].draw();
     }
-    
+
+    mostrarTurno(); // Mostrar el turno después de repintar
 }
 
-function getMousePos(event){
+function mostrarTurno() {
+    let ancho = 150, alto = 50;
+    let x = (turnoJugador === 1) ? 50 : canvasW - ancho - 50;
+    let y = 450;
+
+    // Fondo del panel con bordes redondeados
+    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Purple"; // Rojo para Robots, Amarillo para Aliens
+    ctx.beginPath();
+    ctx.roundRect(x, y, ancho, alto, 10);  // Bordes redondeados
+    ctx.fill();
+
+    // Texto del turno
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "white"; // Contraste
+    ctx.textAlign = "center";
+    ctx.fillText(turnoJugador === 1 ? "Turno: Robots" : "Turno: Aliens", x + ancho / 2, y + alto / 2 + 5);
+}
+
+
+function getMousePos(event) {
     return {
         x: Math.round(event.clientX - canvas.offsetLeft),
         y: Math.round(event.clientY - canvas.offsetTop)
@@ -226,8 +253,8 @@ var indiceFichaEnMovimiento;
 function clickEnFicha(e) {
     let m = getMousePos(e);
     for (let i = 0; i < fichas.length; i++) {
-        if (fichas[i].contienePunto(m.x ,m.y)) {
-            if(ultimaFichaPuesta == null || (fichas[i].getPlayer() != ultimaFichaPuesta)){
+        if (fichas[i].contienePunto(m.x, m.y)) {
+            if (ultimaFichaPuesta == null || (fichas[i].getPlayer() != ultimaFichaPuesta)) {
                 fichaClicked = fichas[i];
                 fichax0 = fichaClicked.getPosX();
                 fichay0 = fichaClicked.getPosY();
@@ -237,55 +264,129 @@ function clickEnFicha(e) {
             }
         }
     }
-    click = true; 
+    click = true;
 }
-
 function ponerFicha(e) {
     let m = getMousePos(e);
     if (fichaClicked != null) {
-        for (let i = 0; (i < posicionPonerFichas.length); i++) {
-            if (posicionPonerFichas[i].contienePunto(m.x,m.y)) {
-                if(ultimaFichaPuesta == null || (fichaClicked.getPlayer() != ultimaFichaPuesta)){
-                    //agrega la ficha al board
+        for (let i = 0; i < posicionPonerFichas.length; i++) {
+            if (posicionPonerFichas[i].contienePunto(m.x, m.y)) {
+                if (ultimaFichaPuesta == null || (fichaClicked.getPlayer() != ultimaFichaPuesta)) {
                     let columna = i;
                     const fichaAgregada = board.agregarFicha(columna, fichaClicked.getPlayer());
                     if (fichaAgregada.insertada) {
-                        //agrega las fichas clickeadas al arreglo de fichas ya puestas en el board
                         fichasPuestas.push(fichaClicked);
-                        //setea la ultimaficha puesta en el board
-                        ultimaFichaPuesta = fichasPuestas[fichasPuestas.length-1].getPlayer(); 
-                        //checkea si hay ganador
-                        if (board.hayGanador(fichaClicked, fichaAgregada.fila, columna)){ 
-                            if (fichaClicked.getPlayer() == 1) {
-                                alert ("¡Han ganado los Robots!");
-                            } else {
-                                alert("¡Han ganado los Aliens!");
-                            }
-                        }
-                        //toma la posicion la ficha en el arreglo de fichas generales
-                        let p = fichas.indexOf(fichaClicked);
-                        //borra del arreglo de fichas generales la ficha puesta
-                        fichas.splice(p,1);
-                    } else break;
+                        ultimaFichaPuesta = fichaClicked.getPlayer();
+                        turnoJugador = turnoJugador === 1 ? 2 : 1;
+
+                       
+                        animarCaida(fichaClicked, fichaAgregada.fila, columna); 
+
+                    } else {
+                        // Si no se puede insertar, la ficha vuelve a su posición original
+                        fichas[indiceFichaEnMovimiento].setPosX(fichax0);
+                        fichas[indiceFichaEnMovimiento].setPosY(fichay0);
+                        repaint();
+                    }
+                    fichaClicked = null;
+                    break;
                 }
-                
-                //setea en null y queda lista para ser clickeada la proxima ficha
-                repaint();
-                fichaClicked = null;
-                break;
             }
         }
-        if (fichaClicked != null) {
-            fichas[indiceFichaEnMovimiento].setPosX(fichax0);
-            fichas[indiceFichaEnMovimiento].setPosY(fichay0);
-            repaint();
-            fichaClicked = null;
-        }
+        // ... (resto del código)
     }
     click = false;
 }
 
-function moverFicha(e){
+function animarCaida(ficha, filaDestino, columna) {
+    let posYInicial = ficha.getPosY(); 
+    let posYFinal = boardy0 + 30 + 50 * filaDestino;   // Calcula la posición final en el tablero
+    let distancia = posYFinal - posYInicial;
+    let tiempoAnimacion = 500; // Duración de la animación en milisegundos
+    let inicioTiempo = null;
+
+    function animacion(tiempoActual) {
+        if (inicioTiempo === null) inicioTiempo = tiempoActual;
+        let tiempoTranscurrido = tiempoActual - inicioTiempo;
+        let progreso = Math.min(tiempoTranscurrido / tiempoAnimacion, 1); // Progreso de 0 a 1
+
+        // Aplica una aceleración a la caída (puedes ajustar la curva)
+        let posicionY = posYInicial + (distancia * progreso * progreso); 
+        ficha.setPosY(posicionY);
+
+        repaint();
+
+        if (progreso < 1) {
+            requestAnimationFrame(animacion); // Continúa la animación
+        } else {
+            // Al finalizar la animación, verifica ganador y muestra el turno
+            if (board.hayGanador(ficha, filaDestino, columna)) {
+                mostrarPopupVictoria(turnoJugador === 2 ? "¡Han ganado los Robots!" : "¡Han ganado los Aliens!");
+            }
+            mostrarTurno();
+            let p = fichas.indexOf(ficha);
+            fichas.splice(p, 1);
+        }
+    }
+
+    requestAnimationFrame(animacion); // Inicia la animación
+}
+function mostrarPopupVictoria(mensaje) {
+    let popup = document.getElementById("victoria-popup");
+
+    if (!popup) {
+        popup = document.createElement("div");
+        popup.id = "victoria-popup";
+        popup.innerHTML = `
+                <div class="popup-content">
+                    <h2 id="mensaje-victoria"></h2>
+                    <button id="cerrar-popup">Cerrar</button>
+                </div>
+            `;
+        document.body.appendChild(popup);
+
+        document.getElementById("cerrar-popup").addEventListener("click", () => {
+            cerrarPopup();
+        });
+    }
+
+    const mensajeVictoria = document.getElementById("mensaje-victoria");
+    mensajeVictoria.textContent = mensaje;
+
+    popup.style.display = "flex"; // <-- Mostrar el popup
+    crearFuegosArtificiales(); // Crear fuegos artificiales
+}
+
+function cerrarPopup() {
+    const popup = document.getElementById("victoria-popup");
+
+    // Eliminar los fuegos artificiales
+    const fuegosArtificiales = popup.querySelectorAll(".fuego-artificial");
+    fuegosArtificiales.forEach(fuego => fuego.remove());
+
+    // Ocultar el popup completamente
+    popup.style.display = "none"; // <-- Ocultar con display: none
+
+    inicializeGame(); // Reiniciar el juego
+}
+
+
+function crearFuegosArtificiales() {
+    const popup = document.getElementById("victoria-popup");
+    const numFuegos = 20; // Número de fuegos artificiales
+
+    for (let i = 0; i < numFuegos; i++) {
+        const fuegoArtificial = document.createElement("div");
+        fuegoArtificial.classList.add("fuego-artificial");
+        fuegoArtificial.style.left = Math.random() * 100 + "%";
+        fuegoArtificial.style.top = Math.random() * 100 + "%";
+        fuegoArtificial.style.animationDelay = Math.random() * 2 + "s"; // Retraso aleatorio
+        fuegoArtificial.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // Color aleatorio
+        popup.appendChild(fuegoArtificial);
+    }
+}
+
+function moverFicha(e) {
     let m = getMousePos(e);
     if (click != false && fichaClicked != null) {
         fichaClicked.setPosX(m.x);
@@ -309,7 +410,7 @@ function temporizador() {
     let segundos = 0;
     if (!temp) {
         tiempoRestante.textContent = minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
-        temp = setInterval(function () {
+        temp = setInterval(function() {
             if ((minutos == 0) && (segundos == 0)) {
                 clearInterval(temp);
                 temp = null;
