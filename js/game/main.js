@@ -69,7 +69,7 @@ document.getElementById("btn-jugar").addEventListener("click", () => {
 })
 
 //CAMBIO DE CANVAS A DIV
-let btnMenu = document.getElementById("btn-menu");
+let btnMenu = document.getElementById("btn-menu-juego");
 
 btnMenu.addEventListener("click", () => {
     canvas.classList.add("esconder");
