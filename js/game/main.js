@@ -220,7 +220,7 @@ function mostrarTurno() {
     let y = 450;
 
     // Fondo del panel con bordes redondeados
-    ctx.fillStyle = turnoJugador === 1 ? "Green" : "Blue"; // Rojo para Robots, Violeta para Aliens
+    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue"; // Rojo para Robots, Violeta para Aliens
     ctx.beginPath();
     ctx.roundRect(x, y, ancho, alto, 10);  // Bordes redondeados
     ctx.fill();

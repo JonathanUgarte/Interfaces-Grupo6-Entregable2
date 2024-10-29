@@ -504,6 +504,40 @@
 }
 /* CSS JUEGO 4 EN LINEA */
 
+
+.game-board {
+    position: relative;
+    display: flex;
+  }
+  
+  .column {
+    width: 50px; /* Ancho de cada columna */
+    height: 0; /* Altura inicial para la flecha */
+    position: relative;
+    margin: 0 5px; /* Espacio entre columnas */
+  }
+  
+  /* Estilo para la flecha */
+  .column::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Ajusta la posición vertical de la flecha */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid red; /* Color de la flecha */
+  }
+  
+  /* Ajustes opcionales para el contenedor */
+  .game-board {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; /* Espacio desde el canvas */
+  }
+
 .juego{
     margin-bottom: 50px;
     display: flex;
@@ -511,7 +545,7 @@
     text-align: center;
     background-image: url("/img/fondo-juego.png");
      width: 95.697796432319vh;
-     height: 55.82371458551941vh;
+     height: 72.82371458551941vh;
      border-radius: 20px;
     
 }
@@ -547,8 +581,8 @@
 }
 
 .formato-juego{
-    width: 185px;
-    height: 135px;
+    width: 160px;
+    height: 120px;
     border-radius: 20px;
 }
 
