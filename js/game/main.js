@@ -65,6 +65,7 @@ document.getElementById("btn-jugar").addEventListener("click", () => {
         segundos = 0;
         temporizador();
         inicializeGame();
+        inicializarHints();
     }
  
 })
@@ -302,6 +303,64 @@ function ponerFicha(e) {
     }
     click = false;
 }
+
+//ANIMACION FLECHAS TRIANGULOS INDICADORES//
+
+let hints = []; // Arreglo para almacenar las posiciones de las flechas
+let hintAnimationDirection = 1; // Dirección de la animación: 1 para bajar, -1 para subir
+
+const imagenFondo = new Image(); // Crear una nueva imagen
+imagenFondo.src = './img/fondo-flechas.png'; // Reemplaza con la ruta de tu imagen de fondo
+
+// Función para inicializar los hints encima de cada columna
+function inicializarHints() {
+    hints = [];
+    for (let i = 0; i < columnas; i++) {
+        let hintX = boardx0 + i * 50 + 25; // Posición X en cada columna
+        let hintY = boardy0 - 75; // Posición Y inicial de las flechas, más arriba del tablero      
+        hints.push({ x: hintX, y: hintY }); // Agregar cada flecha a la lista de hints
+    }
+    animarHints(); // Llamada inicial para empezar la animación
+}
+
+// Función para animar los hints (flechas)
+function animarHints() {
+    // Limpiar el área de las flechas antes de dibujarlas
+    hints.forEach(hint => {
+        ctx.clearRect(hint.x - 15, hint.y - 25, 30, 30); // Limpiar solo el área del triángulo
+    });
+
+    // Dibujar cada fondo y flecha
+    for (let hint of hints) {
+        // Dibujar fondo de la flecha
+        ctx.drawImage(imagenFondo, hint.x - 15, hint.y - 25, 30, 30); // Dibuja la imagen detrás de la flecha
+
+        // Flecha
+        ctx.beginPath();
+        ctx.moveTo(hint.x, hint.y);
+        ctx.lineTo(hint.x - 10, hint.y - 20); // Flecha izquierda
+        ctx.lineTo(hint.x + 10, hint.y - 20); // Flecha derecha
+        ctx.closePath();
+        ctx.fillStyle = "rgba(79, 64, 217, 1)"; // Color de la flecha
+        ctx.fill();
+
+        // Ajustar la posición de Y para crear un efecto de movimiento hacia arriba y hacia abajo
+        hint.y += 0.5 * hintAnimationDirection;
+    }
+
+    // Cambiar dirección de la animación cuando alcanza los límites
+    if (hints[0].y <= boardy0 - 75 || hints[0].y >= boardy0 - 65) {
+        hintAnimationDirection *= -1;
+    }
+
+    // Continuar la animación con requestAnimationFrame
+    requestAnimationFrame(animarHints);
+}
+
+// Asegúrate de que la imagen esté completamente cargada
+imagenFondo.onload = () => {
+    inicializarHints(); // Llama a la función solo después de que la imagen esté lista
+};
 
 
 function animarCaida(ficha, filaDestino, columna) {
