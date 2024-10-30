@@ -65,8 +65,6 @@ document.getElementById("btn-jugar").addEventListener("click", () => {
         segundos = 0;
         temporizador();
         inicializeGame();
-        inicializarHints(); 
-     
     }
  
 })
@@ -113,7 +111,7 @@ let turnoJugador = null
 function inicializeGame() {
     //SETEO VARIABLES
     cantFichasTotal = (modoDeJuego + 3) * (modoDeJuego + 2);
-    turnoJugador = null;
+    turnoJugador = 1;
     boardW = (modoDeJuego + 3) * 50;
     boardH = (modoDeJuego + 2) * 50;
 
@@ -157,8 +155,9 @@ function inicializeGame() {
     for (let i = posicionPonerFichas.length; i > 0; i--) {
         posicionPonerFichas.pop();
     }
-
+    mostrarTurno();
     var image = document.getElementById("robot-1");
+    
 
     board = new Board(tablero, boardx0, boardy0, boardW, boardH, "blue", ctx, modoDeJuego, image);
 
@@ -166,7 +165,7 @@ function inicializeGame() {
 
     board.draw();
 
-    //pinta fichas jugador 1
+    
 
     let fichaPosY = 505;
     for (let i = 0; i < cantFichasTotal / 2; i++) {
@@ -177,7 +176,7 @@ function inicializeGame() {
         ficha.draw();
     }
 
-    //pinta fichas jugador 2
+    
 
     fichaPosY = 505;
     for (let i = 0; i < cantFichasTotal / 2; i++) {
@@ -212,27 +211,26 @@ function repaint() {
         else fichas[i].setFill("yellow");
         fichas[i].draw();
     }
-
-    mostrarTurno(); // Mostrar el turno después de repintar
+    
+    mostrarTurno(); 
 }
 function mostrarTurno() {
     let ancho = 150, alto = 50;
     let x = (turnoJugador === 1) ? 50 : canvasW - ancho - 50;
     let y = 450;
 
-    // Fondo del panel con bordes redondeados
-    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue"; // Rojo para Robots, Violeta para Aliens
+    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue";  
     ctx.beginPath();
-    ctx.roundRect(x, y, ancho, alto, 10);  // Bordes redondeados
+    ctx.roundRect(x, y, ancho, alto, 10);  
     ctx.fill();
 
-    // Texto del turno
     ctx.font = "20px Arial";
-    ctx.fillStyle = "white"; // Contraste
+    ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText(turnoJugador === 1 ? "Turno: Robots" : "Turno: Aliens", x + ancho / 2, y + alto / 2 + 5);
-    
 }
+
+
 
 function getMousePos(event) {
     return {
@@ -253,24 +251,31 @@ var indiceFichaEnMovimiento;
 
 function clickEnFicha(e) {
     let m = getMousePos(e);
+
     for (let i = 0; i < fichas.length; i++) {
-        if (fichas[i].contienePunto(m.x, m.y)) {
+        if (fichas[i].contienePunto(m.x, m.y) && fichas[i].getPlayer() === turnoJugador) {
             if (ultimaFichaPuesta == null || (fichas[i].getPlayer() != ultimaFichaPuesta)) {
                 fichaClicked = fichas[i];
-                fichax0 = fichaClicked.getPosX();
-                fichay0 = fichaClicked.getPosY();
+                fichaPosXInicial = fichaClicked.getPosX(); 
+                fichaPosYInicial = fichaClicked.getPosY(); 
                 indiceFichaEnMovimiento = i;
                 inicioY = m.y - fichaClicked.y;
                 inicioX = m.x - fichaClicked.x;
+                click = true; 
+                return; 
             }
         }
     }
-    click = true;
+
+    click = false;
 }
+
 
 
 function ponerFicha(e) {
     let m = getMousePos(e);
+    let fichaPuesta = false;
+
     if (fichaClicked != null) {
         for (let i = 0; i < posicionPonerFichas.length; i++) {
             if (posicionPonerFichas[i].contienePunto(m.x, m.y)) {
@@ -281,121 +286,63 @@ function ponerFicha(e) {
                         fichasPuestas.push(fichaClicked);
                         ultimaFichaPuesta = fichaClicked.getPlayer();
                         turnoJugador = turnoJugador === 1 ? 2 : 1;
-
-                       
-                        animarCaida(fichaClicked, fichaAgregada.fila, columna); 
-
-                    } else {
-                        // Si no se puede insertar, la ficha vuelve a su posición original
-                        fichas[indiceFichaEnMovimiento].setPosX(fichax0);
-                        fichas[indiceFichaEnMovimiento].setPosY(fichay0);
-                        repaint();
-                    }
-                    fichaClicked = null;
-                    break;
+                        animarCaida(fichaClicked, fichaAgregada.fila, columna);
+                        fichaClicked = null; 
+                        fichaPuesta = true; 
+                    } 
+                    break; 
                 }
             }
         }
-        // ... (resto del código)
+        if (!fichaPuesta) {
+            fichas[indiceFichaEnMovimiento].setPosX(fichaPosXInicial);
+            fichas[indiceFichaEnMovimiento].setPosY(fichaPosYInicial);
+            repaint();
+        }
     }
     click = false;
 }
-//ANIMACION FLECHAS TRIANGULOS INDICADORES//
-
-let hints = []; // Arreglo para almacenar las posiciones de las flechas
-let hintAnimationDirection = 1; // Dirección de la animación: 1 para bajar, -1 para subir
-
-const imagenFondo = new Image(); // Crear una nueva imagen
-imagenFondo.src = './img/fondo-flechas.png'; // Reemplaza con la ruta de tu imagen de fondo
-
-// Función para inicializar los hints encima de cada columna
-function inicializarHints() {
-    hints = [];
-    for (let i = 0; i < columnas; i++) {
-        let hintX = boardx0 + i * 50 + 25; // Posición X en cada columna
-        let hintY = boardy0 - 75; // Posición Y inicial de las flechas, más arriba del tablero      
-        hints.push({ x: hintX, y: hintY }); // Agregar cada flecha a la lista de hints
-    }
-    animarHints(); // Llamada inicial para empezar la animación
-}
-
-// Función para animar los hints (flechas)
-function animarHints() {
-    // Limpiar el área de las flechas antes de dibujarlas
-    hints.forEach(hint => {
-        ctx.clearRect(hint.x - 15, hint.y - 25, 30, 30); // Limpiar solo el área del triángulo
-    });
-
-    // Dibujar cada fondo y flecha
-    for (let hint of hints) {
-        // Dibujar fondo de la flecha
-        ctx.drawImage(imagenFondo, hint.x - 15, hint.y - 25, 30, 30); // Dibuja la imagen detrás de la flecha
-
-        // Flecha
-        ctx.beginPath();
-        ctx.moveTo(hint.x, hint.y);
-        ctx.lineTo(hint.x - 10, hint.y - 20); // Flecha izquierda
-        ctx.lineTo(hint.x + 10, hint.y - 20); // Flecha derecha
-        ctx.closePath();
-        ctx.fillStyle = "rgba(79, 64, 217, 1)"; // Color de la flecha
-        ctx.fill();
-
-        // Ajustar la posición de Y para crear un efecto de movimiento hacia arriba y hacia abajo
-        hint.y += 0.5 * hintAnimationDirection;
-    }
-
-    // Cambiar dirección de la animación cuando alcanza los límites
-    if (hints[0].y <= boardy0 - 75 || hints[0].y >= boardy0 - 65) {
-        hintAnimationDirection *= -1;
-    }
-
-    // Continuar la animación con requestAnimationFrame
-    requestAnimationFrame(animarHints);
-}
-
-// Asegúrate de que la imagen esté completamente cargada
-imagenFondo.onload = () => {
-    inicializarHints(); // Llama a la función solo después de que la imagen esté lista
-};
 
 
 function animarCaida(ficha, filaDestino, columna) {
     const posYInicial = ficha.getPosY();
-    const posX = boardx0 + 25 + 50 * columna; // Ajusta la posición X para alinear con la columna
-    const posYFinal = boardy0 + 25 + 50 * filaDestino; // Calcula la posición final en Y
+    const posX = boardx0 + 25 + 50 * columna; 
+    const posYFinal = boardy0 + 25 + 50 * filaDestino; 
 
     const distancia = posYFinal - posYInicial;
-    const tiempoAnimacion = 500; // Duración de la animación en milisegundos
-    let inicioTiempo = null;
+    const tiempoAnimacion = 500; 
+    let tiempoInicio = null;
 
-    function animacion(tiempoActual) {
-        if (inicioTiempo === null) inicioTiempo = tiempoActual;
-        const tiempoTranscurrido = tiempoActual - inicioTiempo;
-        const progreso = Math.min(tiempoTranscurrido / tiempoAnimacion, 1); // Progreso de 0 a 1
+    function step(timestamp) {  // Usamos timestamp para una animación más suave
+        if (!tiempoInicio) tiempoInicio = timestamp;
+        const tiempoTranscurrido = timestamp - tiempoInicio;
+        let progreso = tiempoTranscurrido / tiempoAnimacion;
 
-        // Aceleración en la caída (ease-in efecto parabólico)
-        const posicionY = posYInicial + (distancia * Math.pow(progreso, 2));
-        ficha.setPosY(posicionY);
-        ficha.setPosX(posX); // Asegura que la ficha esté alineada con la columna
+        // Efecto de aceleración (ease-in)
+        progreso = progreso < 1 ? progreso * progreso : 1; 
 
-        repaint(); // Redibuja la escena con la nueva posición
+        const nuevaPosY = posYInicial + (distancia * progreso);
+        ficha.setPosY(nuevaPosY);
+        ficha.setPosX(posX);
+
+        repaint(); 
 
         if (progreso < 1) {
-            requestAnimationFrame(animacion); // Continúa la animación
+            requestAnimationFrame(step); 
         } else {
-            // Al finalizar la animación, verifica si hay un ganador y muestra el turno
+            // La animación ha terminado
             if (board.hayGanador(ficha, filaDestino, columna)) {
                 mostrarPopupVictoria(turnoJugador === 2 ? "¡Han ganado los Robots!" : "¡Han ganado los Aliens!");
             }
             mostrarTurno();
 
-            // Elimina la ficha del arreglo solo al final de la animación
+            // Elimina la ficha del arreglo al final de la animación
             const index = fichas.indexOf(ficha);
             if (index !== -1) fichas.splice(index, 1);
         }
     }
 
-    requestAnimationFrame(animacion); // Inicia la animación
+    requestAnimationFrame(step); 
 }
 
 function mostrarPopupVictoria(mensaje) {

@@ -6,7 +6,16 @@ class Ficha extends Circle {
     }
 
     draw() {
-        this.context.drawImage(this.image, this.posX-20, this.posY-20, 40, 40);
+        // Dibujar el borde blanco primero
+        this.context.beginPath();
+        this.context.arc(this.posX, this.posY, 20, 0, 2 * Math.PI); // Ajustar el radio al tamaño del borde
+        this.context.lineWidth = 4; // Grosor del borde blanco
+        this.context.strokeStyle = "white";
+        this.context.stroke();
+        this.context.closePath();
+
+        // Dibujar la imagen encima del borde
+        this.context.drawImage(this.image, this.posX - 20, this.posY - 20, 40, 40);
     }
 
     getPlayer() {
