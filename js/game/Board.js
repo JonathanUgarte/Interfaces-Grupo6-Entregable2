@@ -20,20 +20,35 @@ class Board {
     }
 
     draw() {
+        // Dibuja el tablero de 4 en línea
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
-                this.matriz[i][j] = new Slot(boardx0 + 50*j, boardy0 + 50*i, 50, 50, "blue", ctx, this.image);
-                slots.push(this.matriz[i][j]);
-                this.matriz[i][j].draw();
+                if (!this.matriz[i][j]) {
+                    // Inicializa el slot si no existe
+                    this.matriz[i][j] = new Slot(boardx0 + 50 * j, boardy0 + 50 * i, 50, 50, "blue", ctx, this.image);
+                    slots.push(this.matriz[i][j]);
+                }
+                this.matriz[i][j].draw(); // Redibuja el slot
             }
         }
-        for (let i = 0; i < this.modoDeJuego+3; i++) {
-            const slot = new Slot(boardx0 + 50*i, boardy0 - 50, 50, 50, "grey", ctx, this.image);
+    
+        // Dibuja la nueva primera fila de slots
+        for (let i = 0; i < this.modoDeJuego + 3; i++) {
+            const slot = new Slot(boardx0 + 50 * i, boardy0 - 50, 50, 50, "#237C75", ctx, this.image);
             posicionPonerFichas.push(slot);
-            slot.draw();
+    
+            // Configura un color alternante para el borde en tonos personalizados
+            let bordeParpadeoColor = "#237C75";
+            setInterval(() => {
+                bordeParpadeoColor = (bordeParpadeoColor === "#237C75") ? "#2A9D8F" : "#237C75";
+                slot.fill = bordeParpadeoColor; // Cambia el color del borde del Slot
+                slot.draw(); // Redibuja el Slot con el nuevo color del borde
+            }, 500); // Cambia de color cada 500 ms para un efecto de parpadeo
+    
+            slot.draw(); // Dibuja inicialmente el slot
         }
     }
-
+    
     redraw(){
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
@@ -44,7 +59,6 @@ class Board {
             posicionPonerFichas[i].draw();
         }
     }
-
 
     agregarFicha(columna, player) {
         if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
@@ -172,4 +186,9 @@ class Board {
             } else return 1;
         } else return 1;
     }
+
+    clearCanvas() {
+        this.context.clearRect(0, 0, this.width, this.height);
+    }
+    
 }
