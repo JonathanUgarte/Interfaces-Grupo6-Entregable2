@@ -65,6 +65,7 @@ document.getElementById("btn-jugar").addEventListener("click", () => {
         segundos = 0;
         temporizador();
         inicializeGame();
+        inicializarHints();
     }
 })
 
@@ -154,8 +155,9 @@ function inicializeGame() {
     for (let i = posicionPonerFichas.length; i > 0; i--) {
         posicionPonerFichas.pop();
     }
-
+    mostrarTurno();
     var image = document.getElementById("robot-1");
+    
 
     board = new Board(tablero, boardx0, boardy0, boardW, boardH, "blue", ctx, modoDeJuego, image);
 
@@ -163,7 +165,7 @@ function inicializeGame() {
 
     board.draw();
 
-    //pinta fichas jugador 1
+    
 
     let fichaPosY = 505;
     for (let i = 0; i < cantFichasTotal / 2; i++) {
@@ -174,7 +176,7 @@ function inicializeGame() {
         ficha.draw();
     }
 
-    //pinta fichas jugador 2
+    
 
     fichaPosY = 505;
     for (let i = 0; i < cantFichasTotal / 2; i++) {
@@ -211,17 +213,17 @@ function repaint() {
         else fichas[i].setFill("yellow");
         fichas[i].draw();
     }
-
-    mostrarTurno(); // Mostrar el turno después de repintar
+    
+    mostrarTurno(); 
 }
 function mostrarTurno() {
     let ancho = 150, alto = 50;
     let x = (turnoJugador === 1) ? 50 : canvasW - ancho - 50;
     let y = 450;
 
-    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue";  // Rojo para Robots, Azul para Aliens
+    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue";  
     ctx.beginPath();
-    ctx.roundRect(x, y, ancho, alto, 10);  // Bordes redondeados
+    ctx.roundRect(x, y, ancho, alto, 10);  
     ctx.fill();
 
     ctx.font = "20px Arial";
@@ -256,18 +258,17 @@ function clickEnFicha(e) {
         if (fichas[i].contienePunto(m.x, m.y) && fichas[i].getPlayer() === turnoJugador) {
             if (ultimaFichaPuesta == null || (fichas[i].getPlayer() != ultimaFichaPuesta)) {
                 fichaClicked = fichas[i];
-                fichax0 = fichaClicked.getPosX();
-                fichay0 = fichaClicked.getPosY();
+                fichaPosXInicial = fichaClicked.getPosX(); 
+                fichaPosYInicial = fichaClicked.getPosY(); 
                 indiceFichaEnMovimiento = i;
                 inicioY = m.y - fichaClicked.y;
                 inicioX = m.x - fichaClicked.x;
-                click = true;  
-                return;  
+                click = true; 
+                return; 
             }
         }
     }
 
-   
     click = false;
 }
 
@@ -275,6 +276,8 @@ function clickEnFicha(e) {
 
 function ponerFicha(e) {
     let m = getMousePos(e);
+    let fichaPuesta = false;
+
     if (fichaClicked != null) {
         for (let i = 0; i < posicionPonerFichas.length; i++) {
             if (posicionPonerFichas[i].contienePunto(m.x, m.y)) {
@@ -284,65 +287,63 @@ function ponerFicha(e) {
                     if (fichaAgregada.insertada) {
                         fichasPuestas.push(fichaClicked);
                         ultimaFichaPuesta = fichaClicked.getPlayer();
-                    
-                        // Cambia el turno al otro jugador
                         turnoJugador = turnoJugador === 1 ? 2 : 1;
-                    
-                        // Anima la caída de la ficha y oculta la original para evitar duplicación
                         animarCaida(fichaClicked, fichaAgregada.fila, columna);
-                        fichaClicked = null;  // Se asegura de que la ficha no esté activa
-                    } else {
-                        // Si no se puede insertar, la ficha vuelve a su posición original
-                        fichas[indiceFichaEnMovimiento].setPosX(fichax0);
-                        fichas[indiceFichaEnMovimiento].setPosY(fichay0);
-                        repaint();
-                    }
-                    break;
+                        fichaClicked = null; 
+                        fichaPuesta = true; 
+                    } 
+                    break; 
                 }
             }
+        }
+        if (!fichaPuesta) {
+            fichas[indiceFichaEnMovimiento].setPosX(fichaPosXInicial);
+            fichas[indiceFichaEnMovimiento].setPosY(fichaPosYInicial);
+            repaint();
         }
     }
     click = false;
 }
 
-
 function animarCaida(ficha, filaDestino, columna) {
     const posYInicial = ficha.getPosY();
-    const posX = boardx0 + 25 + 50 * columna; // Ajusta la posición X para alinear con la columna
-    const posYFinal = boardy0 + 25 + 50 * filaDestino; // Calcula la posición final en Y
+    const posX = boardx0 + 25 + 50 * columna; 
+    const posYFinal = boardy0 + 25 + 50 * filaDestino; 
 
     const distancia = posYFinal - posYInicial;
-    const tiempoAnimacion = 500; // Duración de la animación en milisegundos
-    let inicioTiempo = null;
+    const tiempoAnimacion = 500; 
+    let tiempoInicio = null;
 
-    function animacion(tiempoActual) {
-        if (inicioTiempo === null) inicioTiempo = tiempoActual;
-        const tiempoTranscurrido = tiempoActual - inicioTiempo;
-        const progreso = Math.min(tiempoTranscurrido / tiempoAnimacion, 1); // Progreso de 0 a 1
+    function step(timestamp) {  // Usamos timestamp para una animación más suave
+        if (!tiempoInicio) tiempoInicio = timestamp;
+        const tiempoTranscurrido = timestamp - tiempoInicio;
+        let progreso = tiempoTranscurrido / tiempoAnimacion;
 
-        // Aceleración en la caída (ease-in efecto parabólico)
-        const posicionY = posYInicial + (distancia * Math.pow(progreso, 2));
-        ficha.setPosY(posicionY);
-        ficha.setPosX(posX); // Asegura que la ficha esté alineada con la columna
+        // Efecto de aceleración (ease-in)
+        progreso = progreso < 1 ? progreso * progreso : 1; 
 
-        repaint(); // Redibuja la escena con la nueva posición
+        const nuevaPosY = posYInicial + (distancia * progreso);
+        ficha.setPosY(nuevaPosY);
+        ficha.setPosX(posX);
+
+        repaint(); 
 
         if (progreso < 1) {
-            requestAnimationFrame(animacion); // Continúa la animación
+            requestAnimationFrame(step); 
         } else {
-            // Al finalizar la animación, verifica si hay un ganador y muestra el turno
+            // La animación ha terminado
             if (board.hayGanador(ficha, filaDestino, columna)) {
                 mostrarPopupVictoria(turnoJugador === 2 ? "¡Han ganado los Robots!" : "¡Han ganado los Aliens!");
             }
             mostrarTurno();
 
-            // Elimina la ficha del arreglo solo al final de la animación
+            // Elimina la ficha del arreglo al final de la animación
             const index = fichas.indexOf(ficha);
             if (index !== -1) fichas.splice(index, 1);
         }
     }
 
-    requestAnimationFrame(animacion); // Inicia la animación
+    requestAnimationFrame(step); 
 }
 
 function mostrarPopupVictoria(mensaje) {
