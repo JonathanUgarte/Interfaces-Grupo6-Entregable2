@@ -2,7 +2,6 @@ const canvas = document.getElementById("myCanvas");
 /** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext("2d");
 
-
 //SELECCION DE PERSONAJES
 let robots = document.querySelectorAll(".robots");
 let aliens = document.querySelectorAll(".aliens");
@@ -187,14 +186,6 @@ function inicializeGame() {
 
     
 }
-
-const image = new Image(900,520);
-image.src = '/img/0-1.jpg'; // Cambia esto por la ruta de tu imagen
-image.onload = () => {
-    const board = new Board(matriz, 0, 0, 500, 500, "white", ctx, modoDeJuego, image);
-    board.draw();
-};
-
 
 canvas.addEventListener("mousedown", clickEnFicha);
 canvas.addEventListener("mouseup", ponerFicha);

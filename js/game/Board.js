@@ -8,7 +8,7 @@ class Board {
         this.height = height;
         this.matriz = matriz;
         this.modoDeJuego = modoDeJuego;
-        this.image = image; // Imagen de fondo
+        this.image = image; 
     }
 
     getWidth() {
@@ -20,15 +20,10 @@ class Board {
     }
 
     draw() {
-        // Dibujar la imagen de fondo si está cargada
-        if (this.image) {
-            this.context.drawImage(this.image, this.posX, this.posY, this.width, this.height);
-        }
-
         // Dibujar el tablero y los slots
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
-                this.matriz[i][j] = new Slot(this.posX + 50 * j, this.posY + 50 * i, 50, 50, "red", this.context);
+                this.matriz[i][j] = new Slot(this.posX + 50 * j, this.posY + 50 * i, 50, 50, "blue", this.context);
                 slots.push(this.matriz[i][j]);
                 this.matriz[i][j].draw();
             }
@@ -41,21 +36,6 @@ class Board {
             slot.draw();
         }
     }
-
-    /*draw() {
-        for (let i = 0; i < this.matriz.length; i++) {
-            for (let j = 0; j < this.matriz[i].length; j++) {
-                this.matriz[i][j] = new Slot(boardx0 + 50*j, boardy0 + 50*i, 50, 50, "blue", ctx, this.image);
-                slots.push(this.matriz[i][j]);
-                this.matriz[i][j].draw();
-            }
-        }
-        for (let i = 0; i < this.modoDeJuego+3; i++) {
-            const slot = new Slot(boardx0 + 50*i, boardy0 - 50, 50, 50, "grey", ctx, this.image);
-            posicionPonerFichas.push(slot);
-            slot.draw();
-        }
-    }*/
 
     redraw(){
         for (let i = 0; i < this.matriz.length; i++) {
