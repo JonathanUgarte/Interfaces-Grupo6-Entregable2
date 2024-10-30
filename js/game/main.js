@@ -110,7 +110,7 @@ let turnoJugador = null
 function inicializeGame() {
     //SETEO VARIABLES
     cantFichasTotal = (modoDeJuego + 3) * (modoDeJuego + 2);
-    turnoJugador = null;
+    turnoJugador = 1;
     boardW = (modoDeJuego + 3) * 50;
     boardH = (modoDeJuego + 2) * 50;
 
@@ -219,19 +219,18 @@ function mostrarTurno() {
     let x = (turnoJugador === 1) ? 50 : canvasW - ancho - 50;
     let y = 450;
 
-    // Fondo del panel con bordes redondeados
-    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue"; // Rojo para Robots, Violeta para Aliens
+    ctx.fillStyle = turnoJugador === 1 ? "Red" : "Blue";  // Rojo para Robots, Azul para Aliens
     ctx.beginPath();
     ctx.roundRect(x, y, ancho, alto, 10);  // Bordes redondeados
     ctx.fill();
 
-    // Texto del turno
     ctx.font = "20px Arial";
-    ctx.fillStyle = "white"; // Contraste
+    ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText(turnoJugador === 1 ? "Turno: Robots" : "Turno: Aliens", x + ancho / 2, y + alto / 2 + 5);
-    
 }
+
+
 
 function getMousePos(event) {
     return {
@@ -252,8 +251,9 @@ var indiceFichaEnMovimiento;
 
 function clickEnFicha(e) {
     let m = getMousePos(e);
+
     for (let i = 0; i < fichas.length; i++) {
-        if (fichas[i].contienePunto(m.x, m.y)) {
+        if (fichas[i].contienePunto(m.x, m.y) && fichas[i].getPlayer() === turnoJugador) {
             if (ultimaFichaPuesta == null || (fichas[i].getPlayer() != ultimaFichaPuesta)) {
                 fichaClicked = fichas[i];
                 fichax0 = fichaClicked.getPosX();
@@ -261,11 +261,16 @@ function clickEnFicha(e) {
                 indiceFichaEnMovimiento = i;
                 inicioY = m.y - fichaClicked.y;
                 inicioX = m.x - fichaClicked.x;
+                click = true;  
+                return;  
             }
         }
     }
-    click = true;
+
+   
+    click = false;
 }
+
 
 
 function ponerFicha(e) {
@@ -279,23 +284,23 @@ function ponerFicha(e) {
                     if (fichaAgregada.insertada) {
                         fichasPuestas.push(fichaClicked);
                         ultimaFichaPuesta = fichaClicked.getPlayer();
+                    
+                        // Cambia el turno al otro jugador
                         turnoJugador = turnoJugador === 1 ? 2 : 1;
-
-                       
-                        animarCaida(fichaClicked, fichaAgregada.fila, columna); 
-
+                    
+                        // Anima la caída de la ficha y oculta la original para evitar duplicación
+                        animarCaida(fichaClicked, fichaAgregada.fila, columna);
+                        fichaClicked = null;  // Se asegura de que la ficha no esté activa
                     } else {
                         // Si no se puede insertar, la ficha vuelve a su posición original
                         fichas[indiceFichaEnMovimiento].setPosX(fichax0);
                         fichas[indiceFichaEnMovimiento].setPosY(fichay0);
                         repaint();
                     }
-                    fichaClicked = null;
                     break;
                 }
             }
         }
-        // ... (resto del código)
     }
     click = false;
 }
