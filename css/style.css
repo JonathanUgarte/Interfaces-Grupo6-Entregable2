@@ -509,7 +509,7 @@
     position: relative;
     display: flex;
   }
-  
+
   .column {
     width: 50px; /* Ancho de cada columna */
     height: 0; /* Altura inicial para la flecha */
@@ -517,6 +517,7 @@
     margin: 0 5px; /* Espacio entre columnas */
   }
   
+
   /* Estilo para la flecha */
   .column::before {
     content: '';
@@ -653,7 +654,7 @@
     font-size: 20px;
     background-color: #4f40d9;
     border: none;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 #btn-menu-juego:hover {
