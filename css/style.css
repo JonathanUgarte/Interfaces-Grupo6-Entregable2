@@ -509,7 +509,7 @@
     position: relative;
     display: flex;
   }
-  
+
   .column {
     width: 50px; /* Ancho de cada columna */
     height: 0; /* Altura inicial para la flecha */
@@ -517,6 +517,7 @@
     margin: 0 5px; /* Espacio entre columnas */
   }
   
+
   /* Estilo para la flecha */
   .column::before {
     content: '';
