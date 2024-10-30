@@ -15,6 +15,7 @@ class Circle extends Figure {
         this.context.closePath();
         this.setFill(fillAnterior);
     }
+    
 
     getRadius() {
         return this.radius;

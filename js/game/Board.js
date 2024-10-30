@@ -8,7 +8,7 @@ class Board {
         this.height = height;
         this.matriz = matriz;
         this.modoDeJuego = modoDeJuego;
-        this.image = image;
+        this.image = image; // Imagen de fondo
     }
 
     getWidth() {
@@ -20,6 +20,29 @@ class Board {
     }
 
     draw() {
+        // Dibujar la imagen de fondo si está cargada
+        if (this.image) {
+            this.context.drawImage(this.image, this.posX, this.posY, this.width, this.height);
+        }
+
+        // Dibujar el tablero y los slots
+        for (let i = 0; i < this.matriz.length; i++) {
+            for (let j = 0; j < this.matriz[i].length; j++) {
+                this.matriz[i][j] = new Slot(this.posX + 50 * j, this.posY + 50 * i, 50, 50, "red", this.context);
+                slots.push(this.matriz[i][j]);
+                this.matriz[i][j].draw();
+            }
+        }
+
+        // Dibujar los slots para las fichas
+        for (let i = 0; i < this.modoDeJuego + 3; i++) {
+            const slot = new Slot(this.posX + 50 * i, this.posY - 50, 50, 50, "grey", this.context);
+            posicionPonerFichas.push(slot);
+            slot.draw();
+        }
+    }
+
+    /*draw() {
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
                 this.matriz[i][j] = new Slot(boardx0 + 50*j, boardy0 + 50*i, 50, 50, "blue", ctx, this.image);
@@ -32,7 +55,7 @@ class Board {
             posicionPonerFichas.push(slot);
             slot.draw();
         }
-    }
+    }*/
 
     redraw(){
         for (let i = 0; i < this.matriz.length; i++) {
@@ -44,17 +67,6 @@ class Board {
             posicionPonerFichas[i].draw();
         }
     }
-
-    /*animateFall(ctx, canvas, ficha, slot){
-        const dt = 0.2;
-        let t = 0;
-        let y = ficha.getHeight;
-        const y0 = y;
-        let x = ficha.getWidth;//DUDOSO EL GETWIDHT
-        const g = 10;
-        const yMax = slot.getHeight + 
-    }*/
-
         agregarFicha(columna, player) {
         if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
             const ficha = new Ficha(this.posX+30+60*columna,this.posY+30+60*5,20,"",this.context, player, this.image);

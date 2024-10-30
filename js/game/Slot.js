@@ -10,9 +10,6 @@ class Slot extends Figure {
         this.ficha = ficha;
         this.draw();
     }
-    deleteFicha() {
-        this.ficha.setPlayer(0);
-    }
     getFicha() {
         return this.ficha;
     }

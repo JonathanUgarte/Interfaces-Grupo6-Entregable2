@@ -188,6 +188,12 @@ function inicializeGame() {
     
 }
 
+const image = new Image(900,520);
+image.src = '/img/0-1.jpg'; // Cambia esto por la ruta de tu imagen
+image.onload = () => {
+    const board = new Board(matriz, 0, 0, 500, 500, "white", ctx, modoDeJuego, image);
+    board.draw();
+};
 
 
 canvas.addEventListener("mousedown", clickEnFicha);
@@ -228,7 +234,7 @@ function mostrarTurno() {
     // Texto del turno
     ctx.font = "20px Arial";
     ctx.fillStyle = "white"; // Contraste
-    ctx.textAlign = "center";
+    ctx.textAlign = "center";x
     ctx.fillText(turnoJugador === 1 ? "Turno: Robots" : "Turno: Aliens", x + ancho / 2, y + alto / 2 + 5);
     
 }
@@ -339,6 +345,8 @@ function animarCaida(ficha, filaDestino, columna) {
 
     requestAnimationFrame(animacion); // Inicia la animación
 }
+
+
 
 function mostrarPopupVictoria(mensaje) {
     let popup = document.getElementById("victoria-popup");
