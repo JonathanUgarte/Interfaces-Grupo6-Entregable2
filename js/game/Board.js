@@ -45,6 +45,7 @@ class Board {
             slot.draw();
             this.startBlinking();
         }
+<<<<<<< HEAD
       
        
     }
@@ -67,6 +68,11 @@ class Board {
     }
     
     
+=======
+        this.animateTopRowBorder();
+    }
+
+>>>>>>> 25dc89313919496ea3ecf7db2e76a23fcba51152
     redraw(){
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
@@ -77,8 +83,43 @@ class Board {
             posicionPonerFichas[i].draw();
         }
         
+<<<<<<< HEAD
+=======
+    }
+    animateTopRowBorder() {
+        let hue = 180; // Empieza en el rango de tonos de azul (180-240)
+        
+        const animateBorder = () => {
+            // Obtiene el primer y último slot para determinar las posiciones de los bordes exteriores
+            const firstSlot = posicionPonerFichas[0];
+            const lastSlot = posicionPonerFichas[posicionPonerFichas.length - 1];
+            
+            // Calcula las coordenadas del borde exterior
+            const startX = firstSlot.posX; // Coordenada X del borde izquierdo
+            const startY = firstSlot.posY; // Coordenada Y del borde superior
+            const totalWidth = (lastSlot.posX + lastSlot.width) - firstSlot.posX; // Ancho total de la fila
+            const totalHeight = firstSlot.height; // Altura de los slots, usada como altura del contorno
+    
+            // Configuración del estilo de borde
+            firstSlot.context.strokeStyle = `hsl(${hue}, 100%, 50%)`; // Cambia el color del borde
+            firstSlot.context.lineWidth = 2; // Ajusta el grosor del borde
+    
+            // Dibuja un rectángulo alrededor de toda la fila
+            firstSlot.context.strokeRect(startX, startY, totalWidth, totalHeight);
+    
+            // Cambia el tono de azul para dar el efecto de animacion
+            hue += 0.2;
+            if (hue > 240) hue = 180; // Reinicia el tono cuando excede el rango de azul
+    
+            // Llama a la función de nuevo en el siguiente cuadro de animacion
+            requestAnimationFrame(animateBorder);
+        };
+    
+        animateBorder(); // Inicia la animacion
+>>>>>>> 25dc89313919496ea3ecf7db2e76a23fcba51152
     }
 
+    //Funcion agregar ficha
     agregarFicha(columna, player) {
         if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
             const ficha = new Ficha(this.posX+30+60*columna,this.posY+30+60*5,20,"",this.context, player, this.image);
@@ -106,13 +147,13 @@ class Board {
         }
         return ultimaFilaLibre;
     }
-    
+     //CHEQUEOS PARA DETECTAR GANADOR
     hayGanador(ultimaFichaPuesta, fila, columna) {
         if ((this.checkeoHorizontal(ultimaFichaPuesta, fila, columna)) || (this.checkeoVertical(ultimaFichaPuesta, fila, columna)) || (this.checkeoDiagonales(ultimaFichaPuesta, fila, columna))) return true;
         else return false;
     }
 
-    //CHEQUEO HORIZONTAL
+   
     
     checkeoHorizontal(ultimaFichaPuesta, fila, columna) {
         let fichasEnLinea = this.checkeoIzquierda(ultimaFichaPuesta, fila, columna);
@@ -124,7 +165,7 @@ class Board {
         }
         return false;
     }
-
+    
     checkeoIzquierda(ultimaFichaPuesta, fila, columna) {
         if ((this.matriz[fila][columna-1] != null) && (this.matriz[fila][columna-1].getFicha().getPlayer() == ultimaFichaPuesta.getPlayer())) {
             if (this.matriz[fila][columna-1] != null) {
@@ -132,7 +173,7 @@ class Board {
             } else return 1;
         } else return 1;
     }
-
+  
     checkeoDerecha(ultimaFichaPuesta, fila, columna) {
         if ((this.matriz[fila][columna+1] != null) && (this.matriz[fila][columna+1].getFicha().getPlayer() == ultimaFichaPuesta.getPlayer())) {
             if (this.matriz[fila][columna+1] != null) {
@@ -141,12 +182,12 @@ class Board {
         } else return 1;
     }
 
-    //CHEQUEO VERTICAL
+    
     checkeoVertical(ultimaFichaPuesta, fila, columna) {
         let fichasEnLinea = this.checkeoAbajo(ultimaFichaPuesta, fila, columna);
         return (fichasEnLinea == this.modoDeJuego)
     }
-
+   
     checkeoAbajo(ultimaFichaPuesta, fila, columna) {
         if ((this.matriz[fila+1] != null) && (this.matriz[fila+1][columna].getFicha().getPlayer() == ultimaFichaPuesta.getPlayer())) {
             if (this.matriz[fila+1][columna] != null) {
@@ -155,7 +196,6 @@ class Board {
         } else return 1;
     }
 
-    //CHEQUEO DIAGONALES
     checkeoDiagonales(ultimaFichaPuesta, fila, columna) {
         let fichasEnLinea = this.checkeoArribaIzquierda(ultimaFichaPuesta, fila, columna);
         if (fichasEnLinea == this.modoDeJuego) return true;
