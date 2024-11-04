@@ -30,19 +30,11 @@ class Board {
         for (let i = 0; i < this.modoDeJuego+3; i++) {
             const slot = new Slot(boardx0 + 50*i, boardy0 - 50, 50, 50, "grey", ctx, this.image);
             posicionPonerFichas.push(slot);
-    
-            // Configura un color alternante para el borde en tonos personalizados
-            let bordeParpadeoColor = "#237C75";
-            setInterval(() => {
-                bordeParpadeoColor = (bordeParpadeoColor === "#237C75") ? "#2A9D8F" : "#237C75";
-                slot.fill = bordeParpadeoColor; // Cambia el color del borde del Slot
-                slot.draw(); // Redibuja el Slot con el nuevo color del borde
-            }, 500); // Cambia de color cada 500 ms para un efecto de parpadeo
-    
-            slot.draw(); // Dibuja inicialmente el slot
+            slot.draw();
         }
+        this.animateTopRowBorder();
     }
-    
+
     redraw(){
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
@@ -52,8 +44,8 @@ class Board {
         for (let i = 0; i < this.modoDeJuego+3; i++) {
             posicionPonerFichas[i].draw();
         }
+        
     }
-
 
     agregarFicha(columna, player) {
         if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
@@ -112,13 +104,13 @@ class Board {
         }
         return ultimaFilaLibre;
     }
-    
+     //CHEQUEOS PARA DETECTAR GANADOR
     hayGanador(ultimaFichaPuesta, fila, columna) {
         if ((this.checkeoHorizontal(ultimaFichaPuesta, fila, columna)) || (this.checkeoVertical(ultimaFichaPuesta, fila, columna)) || (this.checkeoDiagonales(ultimaFichaPuesta, fila, columna))) return true;
         else return false;
     }
 
-    //CHEQUEO HORIZONTAL
+   
     
     checkeoHorizontal(ultimaFichaPuesta, fila, columna) {
         let fichasEnLinea = this.checkeoIzquierda(ultimaFichaPuesta, fila, columna);
@@ -130,7 +122,7 @@ class Board {
         }
         return false;
     }
-
+    
     checkeoIzquierda(ultimaFichaPuesta, fila, columna) {
         if ((this.matriz[fila][columna-1] != null) && (this.matriz[fila][columna-1].getFicha().getPlayer() == ultimaFichaPuesta.getPlayer())) {
             if (this.matriz[fila][columna-1] != null) {
@@ -138,7 +130,7 @@ class Board {
             } else return 1;
         } else return 1;
     }
-
+  
     checkeoDerecha(ultimaFichaPuesta, fila, columna) {
         if ((this.matriz[fila][columna+1] != null) && (this.matriz[fila][columna+1].getFicha().getPlayer() == ultimaFichaPuesta.getPlayer())) {
             if (this.matriz[fila][columna+1] != null) {
@@ -147,12 +139,12 @@ class Board {
         } else return 1;
     }
 
-    //CHEQUEO VERTICAL
+    
     checkeoVertical(ultimaFichaPuesta, fila, columna) {
         let fichasEnLinea = this.checkeoAbajo(ultimaFichaPuesta, fila, columna);
         return (fichasEnLinea == this.modoDeJuego)
     }
-
+   
     checkeoAbajo(ultimaFichaPuesta, fila, columna) {
         if ((this.matriz[fila+1] != null) && (this.matriz[fila+1][columna].getFicha().getPlayer() == ultimaFichaPuesta.getPlayer())) {
             if (this.matriz[fila+1][columna] != null) {
@@ -161,7 +153,6 @@ class Board {
         } else return 1;
     }
 
-    //CHEQUEO DIAGONALES
     checkeoDiagonales(ultimaFichaPuesta, fila, columna) {
         let fichasEnLinea = this.checkeoArribaIzquierda(ultimaFichaPuesta, fila, columna);
         if (fichasEnLinea == this.modoDeJuego) return true;
