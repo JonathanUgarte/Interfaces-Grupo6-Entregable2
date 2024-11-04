@@ -9,6 +9,10 @@ class Board {
         this.matriz = matriz;
         this.modoDeJuego = modoDeJuego;
         this.image = image;
+        this.blinking = true; // Para controlar el parpadeo de la primera fila
+        this.blinkColor = "yellow"; // Color del parpadeo
+        this.originalColor = "grey"; // Color original
+        this.blinkInterval = null; // Intervalo de parpadeo
     }
 
     getWidth() {
@@ -19,63 +23,116 @@ class Board {
         return this.height;
     }
 
+    startBlinking() {
+        this.blinkInterval = setInterval(() => {
+            this.blinking = !this.blinking;
+            this.redraw();
+        }, 500); // Cambia cada 500ms
+    }
+
+    stopBlinking() {
+        if (this.blinkInterval) {
+            clearInterval(this.blinkInterval);
+            this.blinkInterval = null;
+        }
+    }
+
     draw() {
+        // Crear la matriz con el nuevo tamaño de slots
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
-                this.matriz[i][j] = new Slot(boardx0 + 50*j, boardy0 + 50*i, 50, 50, "blue", ctx, this.image);
+                this.matriz[i][j] = new Slot(
+                    this.posX + 50 * j, this.posY + 50 * i, 50, 50,
+                    "blue", this.context, this.image
+                );
                 slots.push(this.matriz[i][j]);
                 this.matriz[i][j].draw();
             }
         }
-        for (let i = 0; i < this.modoDeJuego+3; i++) {
-            const slot = new Slot(boardx0 + 50*i, boardy0 - 50, 50, 50, "grey", ctx, this.image);
+
+        // Dibujar la fila superior con el nuevo tamaño y parpadeo
+        for (let i = 0; i < this.modoDeJuego + 3; i++) {
+            const color = this.blinking ? this.blinkColor : this.originalColor;
+            const slot = new Slot(
+                this.posX + 50 * i, this.posY - 50, 50, 50,
+                color, this.context, this.image
+            );
             posicionPonerFichas.push(slot);
             slot.draw();
         }
+
+        // Reiniciar el parpadeo para el nuevo tablero
+        this.startBlinking();
     }
-    redraw(){
+
+
+    redraw() {
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
                 this.matriz[i][j].draw();
             }
         }
-        for (let i = 0; i < this.modoDeJuego+3; i++) {
+
+        for (let i = 0; i < this.modoDeJuego + 3; i++) {
+            const color = this.blinking ? this.blinkColor : this.originalColor;
+            posicionPonerFichas[i].fill = color;
             posicionPonerFichas[i].draw();
         }
     }
 
+    limpiarTablero(nuevoModoDeJuego) {
+        // Detener el parpadeo de la fila superior
+        this.stopBlinking();
+
+        // Actualizar el modo de juego
+        this.modoDeJuego = nuevoModoDeJuego;
+
+        // Limpiar la matriz y la lista de slots para la fila superior
+        this.matriz = Array.from({ length: 6 }, () => Array(this.modoDeJuego + 3).fill(null));
+        posicionPonerFichas = [];
+
+        // Vaciar el tablero visualmente
+        this.context.clearRect(0, 0, this.width, this.height);
+
+        // Redibujar el tablero completo con el nuevo modo de juego
+        this.draw();
+    }
+
     agregarFicha(columna, player) {
-        if ((columna < this.modoDeJuego+3) && (player == 1 || player == 2)) {
-            const ficha = new Ficha(this.posX+30+60*columna,this.posY+30+60*5,20,"",this.context, player, this.image);
-            if (this.matriz[0][columna].getFicha().getPlayer() == 0) {
+        if (columna < this.modoDeJuego + 3 && (player === 1 || player === 2)) {
+            const ficha = new Ficha(
+                this.posX + 30 + 60 * columna, this.posY + 30 + 60 * 5,
+                20, "", this.context, player, this.image
+            );
+            if (this.matriz[0][columna].getFicha().getPlayer() === 0) {
                 let fila = this.buscarFilaLibre(columna);
                 this.matriz[fila][columna].setFicha(ficha);
-                return {
-                    insertada: true,
-                    fila: fila
-                };
+                return { insertada: true, fila };
+            } else {
+                return { insertada: false, fila: -1 };
             }
-            else return {
-                insertada: false,
-                fila: -1
-            };
         }
     }
 
     buscarFilaLibre(columna) {
         let ultimaFilaLibre = 0;
-        for (let i = 0; i < this.modoDeJuego+2; i++) {
-            if (this.matriz[i][columna].getFicha().getPlayer() == 0) {
+        for (let i = 0; i < this.modoDeJuego + 2; i++) {
+            if (this.matriz[i][columna].getFicha().getPlayer() === 0) {
                 ultimaFilaLibre = i;
             }
         }
         return ultimaFilaLibre;
     }
-    
+
     hayGanador(ultimaFichaPuesta, fila, columna) {
-        if ((this.checkeoHorizontal(ultimaFichaPuesta, fila, columna)) || (this.checkeoVertical(ultimaFichaPuesta, fila, columna)) || (this.checkeoDiagonales(ultimaFichaPuesta, fila, columna))) return true;
-        else return false;
+        return (
+            this.checkeoHorizontal(ultimaFichaPuesta, fila, columna) ||
+            this.checkeoVertical(ultimaFichaPuesta, fila, columna) ||
+            this.checkeoDiagonales(ultimaFichaPuesta, fila, columna)
+        );
     }
+
+
 
     //CHEQUEO HORIZONTAL
     
