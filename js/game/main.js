@@ -195,6 +195,7 @@ canvas.addEventListener("mousedown", clickEnFicha);
 canvas.addEventListener("mouseup", ponerFicha);
 canvas.addEventListener("mousemove", moverFicha);
 
+//FONDO CANVAS
 function pintarFondo() {
     let img = document.querySelector("#fondo-canvas")
     let imgFondo = ctx.createPattern(img, null);
@@ -215,6 +216,7 @@ function repaint() {
     
     mostrarTurno(); 
 }
+    //DIV QUE MUESTRA A QUE JUGADOR LE TOCA
 function mostrarTurno() {
     let ancho = 150, alto = 50;
     let x = (turnoJugador === 1) ? 50 : canvasW - ancho - 50;
@@ -301,7 +303,7 @@ function ponerFicha(e) {
     }
     click = false;
 }
-
+//ANIMACION DE LA CAIDA DE LA FICHA 
 function animarCaida(ficha, filaDestino, columna) {
     const posYInicial = ficha.getPosY();
     const posX = boardx0 + 25 + 50 * columna; 
@@ -342,7 +344,7 @@ function animarCaida(ficha, filaDestino, columna) {
 
     requestAnimationFrame(step); 
 }
-
+//Mostrar ganador//
 function mostrarPopupVictoria(mensaje) {
     let popup = document.getElementById("victoria-popup");
 
