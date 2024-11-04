@@ -20,19 +20,53 @@ class Board {
     }
 
     draw() {
+        // Dibujar la cuadrícula principal
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
-                this.matriz[i][j] = new Slot(boardx0 + 50*j, boardy0 + 50*i, 50, 50, "blue", ctx, this.image);
+                this.matriz[i][j] = new Slot(boardx0 + 50 * j, boardy0 + 50 * i, 50, 50, "blue", ctx, this.image);
                 slots.push(this.matriz[i][j]);
                 this.matriz[i][j].draw();
             }
         }
+    
+        // Dibujar la fila superior con ranuras grises
+        for (let i = 0; i < this.modoDeJuego + 3; i++) {
+            const slot = new Slot(boardx0 + 50 * i, boardy0 - 50, 50, 50, "grey", ctx, this.image);
+            posicionPonerFichas.push(slot);
+            slot.draw();
+        }
+    
+        // Añadir animación de parpadeo a la fila superior
+      
+        
         for (let i = 0; i < this.modoDeJuego+3; i++) {
             const slot = new Slot(boardx0 + 50*i, boardy0 - 50, 50, 50, "grey", ctx, this.image);
             posicionPonerFichas.push(slot);
             slot.draw();
+            this.startBlinking();
         }
+      
+       
     }
+
+    startBlinking() {
+        // Detener cualquier intervalo existente
+        clearInterval(this.blinkInterval);
+        this.blinkState = true; // Reinicia el estado del parpadeo
+
+        // Iniciar un nuevo intervalo para el parpadeo
+        this.blinkInterval = setInterval(() => {
+            // Alternar color de la fila superior
+            const color = this.blinkState ? "green" : "grey"; // Color alternante
+            this.posicionPonerFichas.forEach(slot => {
+                slot.color = color; // Cambia el color del slot
+                slot.draw(); // Redibuja el slot
+            });
+            this.blinkState = !this.blinkState; // Cambia el estado para la siguiente iteración
+        }, 100); // Cambia cada 500 ms
+    }
+    
+    
     redraw(){
         for (let i = 0; i < this.matriz.length; i++) {
             for (let j = 0; j < this.matriz[i].length; j++) {
@@ -42,6 +76,7 @@ class Board {
         for (let i = 0; i < this.modoDeJuego+3; i++) {
             posicionPonerFichas[i].draw();
         }
+        
     }
 
     agregarFicha(columna, player) {

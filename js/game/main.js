@@ -3,7 +3,6 @@ const canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 
 
-
 //SELECCION DE PERSONAJES
 let robots = document.querySelectorAll(".robots");
 let aliens = document.querySelectorAll(".aliens");
