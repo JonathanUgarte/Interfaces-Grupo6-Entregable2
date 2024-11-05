@@ -1025,6 +1025,9 @@
     background-color: #1A6F64; /* Color de fondo al pasar el ratón */
     transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el ratón */
 }
+#fondoTablero{
+    background-image: url("../img/fondoTablero.png");
+}
 
 .btn-enviar:active {
     transform: scale(0.4); /* Efecto de pulsación al hacer clic */
