@@ -694,7 +694,7 @@
 /* CSS DE INFO JUEGO */
 .intrucciones-container{
     padding: 30px;
-    height: 1480px;
+    height: 1180px;
     width: 95.697796432319vh;
     border-radius: 20px;
     background-color: #1629A1;
@@ -948,6 +948,27 @@
 }
 
 /*COMENTARIOS */
+
+.comments-container{
+    display: flex;
+    justify-content: center;
+}
+.comments-container h2 {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.seccion-comentarios-container{
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #1629A1;
+    margin-top: 30px;
+    width: 95.697796432319vh;
+    height: 50vh;
+}
 .comentarios-container {
     border-radius: 20px;
     height: 250px;
