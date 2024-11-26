@@ -967,7 +967,6 @@
     background-color: #1629A1;
     margin-top: 30px;
     width: 95.697796432319vh;
-    height: 50vh;
 }
 .comentarios-container {
     border-radius: 20px;
@@ -977,6 +976,7 @@
     margin-left: 20px;
     margin-top: 20px;
     padding: 20px;
+    padding-bottom: 20px;
 }
 
 .comentarios-profile {
